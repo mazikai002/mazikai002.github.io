@@ -1,4 +1,4 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Mazikai's Blog</title><link>https://mazikai002.github.io/</link><description>Hugo theme - LoveIt</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 06 Nov 2021 21:40:32 +0800</lastBuildDate><atom:link href="https://mazikai002.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog搭建过程</title><link>https://mazikai002.github.io/first_blog/</link><pubDate>Sat, 06 Nov 2021 21:40:32 +0800</pubDate><author>Mazikai</author><guid>https://mazikai002.github.io/first_blog/</guid><description><![CDATA[<blockquote>
 <p>博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流。</br>
-这是我的第一篇博客，记录我是如何搭建这个网站的！</p>
+这是我的第一篇博客，记录我是如何搭建这个网站的！希望对您也有帮助~</p>
 </blockquote>]]></description></item></channel></rss>
