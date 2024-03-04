@@ -6,9 +6,9 @@
 <title>Go 基本语法 —— var、new、make区别及使用 - Mazikai's Blog</title><meta name=Description content="make和new是内置函数，不是关键字，var是关键字"><meta property="og:title" content="Go 基本语法 —— var、new、make区别及使用">
 <meta property="og:description" content="make和new是内置函数，不是关键字，var是关键字">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mazikai002.github.io/go_diff_of_new_and_make/"><meta property="og:image" content="https://mazikai002.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://mazikai002.github.io/go_new_make/"><meta property="og:image" content="https://mazikai002.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-12-06T21:40:32+08:00">
-<meta property="article:modified_time" content="2024-03-04T21:22:30+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-04T21:24:21+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/logo.png">
 <meta name=twitter:title content="Go 基本语法 —— var、new、make区别及使用">
@@ -16,9 +16,9 @@
 <meta name=application-name content="LoveIt">
 <meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go_diff_of_new_and_make/><link rel=next href=https://mazikai002.github.io/first_blog/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go_new_make/><link rel=next href=https://mazikai002.github.io/first_blog/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Go 基本语法 —— var、new、make区别及使用","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go_diff_of_new_and_make\/"},"image":["https:\/\/mazikai002.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"installation, configuration","wordcount":1507,"url":"https:\/\/mazikai002.github.io\/go_diff_of_new_and_make\/","datePublished":"2021-12-06T21:40:32+08:00","dateModified":"2024-03-04T21:22:30+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"make和new是内置函数，不是关键字，var是关键字"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Go 基本语法 —— var、new、make区别及使用","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go_new_make\/"},"image":["https:\/\/mazikai002.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"Go","wordcount":1507,"url":"https:\/\/mazikai002.github.io\/go_new_make\/","datePublished":"2021-12-06T21:40:32+08:00","dateModified":"2024-03-04T21:24:21+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"make和new是内置函数，不是关键字，var是关键字"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -41,7 +41,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="menu-item language" title=选择语言>
 <i class="fa fa-globe" aria-hidden=true></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go_diff_of_new_and_make/ selected>简体中文</option></select>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go_new_make/ selected>简体中文</option></select>
 </a></div>
 </div>
 </div>
@@ -75,7 +75,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>
 <i class="fa fa-globe fa-fw" aria-hidden=true></i>
-<select class=language-select onchange="location=this.value"><option value=/go_diff_of_new_and_make/ selected>简体中文</option></select>
+<select class=language-select onchange="location=this.value"><option value=/go_new_make/ selected>简体中文</option></select>
 </a></div>
 </div>
 </header><div class="search-dropdown desktop">
@@ -88,9 +88,9 @@
 <h2 class=toc-title>目录</h2>
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Go 基本语法 —— var、new、make区别及使用</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/documentation/><i class="far fa-folder fa-fw" aria-hidden=true></i>文档</a></span></div>
+<div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/go/><i class="far fa-folder fa-fw" aria-hidden=true></i>Go</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2021-12-06>2021-12-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1507 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;<span id=/go_diff_of_new_and_make/ class=leancloud_visitors data-flag-title="Go 基本语法 —— var、new、make区别及使用">
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;<span id=/go_new_make/ class=leancloud_visitors data-flag-title="Go 基本语法 —— var、new、make区别及使用">
 <i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
 </div><div class="details toc" id=toc-static data-kept>
@@ -159,7 +159,7 @@ fmt.Println(*j)
 </div>
 </div><p>声明指针类型变量后，通过new为他分配指向的内存，有了内存空间，这个变量就可以自由的使用了。</p>
 <p>来看一下new函数的签名：</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=/go_diff_of_new_and_make/new%E5%87%BD%E6%95%B0.png data-srcset="/go_diff_of_new_and_make/new%E5%87%BD%E6%95%B0.png, /go_diff_of_new_and_make/new%E5%87%BD%E6%95%B0.png 1.5x, /go_diff_of_new_and_make/new%E5%87%BD%E6%95%B0.png 2x" data-sizes=auto alt=/go_diff_of_new_and_make/new%E5%87%BD%E6%95%B0.png title=new函数签名 width=721 height=102></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=new%e5%87%bd%e6%95%b0.png data-srcset="new%e5%87%bd%e6%95%b0.png, new%e5%87%bd%e6%95%b0.png 1.5x, new%e5%87%bd%e6%95%b0.png 2x" data-sizes=auto alt=new函数.png title=new函数签名></p>
 <p>它只接受一个参数，这个参数是一个类型，**分配好内存后，返回一个指向该类型内存地址的指针。这块内存上存的是类型的零值。**这个类型也能是指针。</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -275,20 +275,20 @@ fmt.Printf(&#34;%#v&#34;, c) //(chan int)(0xc000062060)
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>更新于 2024-03-04&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/039d68d68ec4937ffbbe858ebfe0d268404bfe86 target=_blank title="commit by mazikai002(12685439+mazikai002@user.noreply.gitee.com) 039d68d68ec4937ffbbe858ebfe0d268404bfe86: feat:35 commit">
-<i class="fas fa-hashtag fa-fw" aria-hidden=true></i>039d68d</a></span>
+<span>更新于 2024-03-04&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/fcced04fc632dd264bc35c02651f66ac795d48f2 target=_blank title="commit by mazikai002(12685439+mazikai002@user.noreply.gitee.com) fcced04fc632dd264bc35c02651f66ac795d48f2: feat:36 commit">
+<i class="fas fa-hashtag fa-fw" aria-hidden=true></i>fcced04</a></span>
 </div></div>
 <div class=post-info-line>
 <div class=post-info-md><span>
-<a class=link-to-markdown href=/go_diff_of_new_and_make/index.md target=_blank>阅读原始文档</a>
+<a class=link-to-markdown href=/go_new_make/index.md target=_blank>阅读原始文档</a>
 </span></div>
 <div class=post-info-share>
-<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://mazikai002.github.io/go_diff_of_new_and_make/ data-title="Go 基本语法 —— var、new、make区别及使用" data-via=mazikai002 data-hashtags=installation,configuration><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://mazikai002.github.io/go_diff_of_new_and_make/ data-hashtag=installation><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://mazikai002.github.io/go_diff_of_new_and_make/ data-title="Go 基本语法 —— var、new、make区别及使用"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://mazikai002.github.io/go_diff_of_new_and_make/ data-title="Go 基本语法 —— var、new、make区别及使用"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://mazikai002.github.io/go_diff_of_new_and_make/ data-title="Go 基本语法 —— var、new、make区别及使用"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://mazikai002.github.io/go_new_make/ data-title="Go 基本语法 —— var、new、make区别及使用" data-via=mazikai002 data-hashtags=Go><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://mazikai002.github.io/go_new_make/ data-hashtag=Go><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://mazikai002.github.io/go_new_make/ data-title="Go 基本语法 —— var、new、make区别及使用"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://mazikai002.github.io/go_new_make/ data-title="Go 基本语法 —— var、new、make区别及使用"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://mazikai002.github.io/go_new_make/ data-title="Go 基本语法 —— var、new、make区别及使用"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
 </div>
 </div>
 </div>
 <div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/installation/>安装</a>,&nbsp;<a href=/tags/configuration/>配置</a></section>
+<section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/go/>Go</a></section>
 <section>
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
