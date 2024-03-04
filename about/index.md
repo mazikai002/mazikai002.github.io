@@ -1,24 +1,27 @@
-# About Me
+# 关于
 
 
+<br />
+<div align='center' ><font size='70'>" Not Day But Today "</font></div>
+<br />
+
+![拍摄于宜昌](/images/mazikai002.png "2020年拍摄于宜昌")
+
+## 个人简介
 >
-> Hi , 
+> Hello , 
 > 
 > My name is **Mazikai** .
 >
 > Major in **Observability** .
 > 
-> Motto is **" Not Day But Todat "** .
-> 
-> If you have any questions or idea, Communications are welcome!!!  [**Please Mail**](mazikai002@gmail.com)
-
-![生活照_宜昌拍摄](/images/mazikai002.png "生活照_宜昌拍摄")
+> If you have any questions or idea, Communications are welcome!&emsp;[**Please Mail**](http://mazikai002@gmail.com)
 
 ## 个人经历
 
-* 贝壳找房科技有限公司&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;平台研发组&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2021.07~至今
-* 华中科技大学.硕士&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;材料加工工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2018.07~2021.06
-* 武汉科技大学.学士&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;材料成 型及控制工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2014.07~2018.06
+* 贝壳找房科技有限公司&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;平台研发组&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2021.07~至今
+* 华中科技大学.硕士&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;材料加工工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2018.07~2021.06
+* 武汉科技大学.学士&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;材料成 型及控制工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2014.07~2018.06
 
 ## 专业技能
 
@@ -30,3 +33,10 @@
 - **云原生** : 了解 Kubernetes 容器编排工具、APISIX 云网关
 - **其他** : 掌握 Linux 及常用命令(有开发部署项目经验)、 Git、Docker、Markdown
 
+
+
+
+
+
+## 关于版权
+本站所有的原创文章均受 创作共享 署名-非商业性 4.0 许可协议 / CC BY-NC 4.0 保护。

@@ -1,0 +1,468 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<title>Blog搭建过程 - Mazikai's Blog</title><meta name=Description content="博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流"><meta property="og:title" content="Blog搭建过程">
+<meta property="og:description" content="博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mazikai002.github.io/first_blog/"><meta property="og:image" content="https://mazikai002.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-11-06T21:40:32+08:00">
+<meta property="article:modified_time" content="2024-03-04T21:02:51+08:00"><meta property="og:site_name" content="LoveIt">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://mazikai002.github.io/logo.png">
+<meta name=twitter:title content="Blog搭建过程">
+<meta name=twitter:description content="博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流">
+<meta name=application-name content="LoveIt">
+<meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/first_blog/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Blog搭建过程","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/first_blog\/"},"image":["https:\/\/mazikai002.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"installation, configuration","wordcount":2817,"url":"https:\/\/mazikai002.github.io\/first_blog\/","datePublished":"2021-11-06T21:40:32+08:00","dateModified":"2024-03-04T21:02:51+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Mazikai"},"description":"博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流"}</script></head>
+<body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Mazikai's Blog">Mazikai's Blog</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> 所有文章 </a><a class=menu-item href=/tags/> 标签 </a><a class=menu-item href=/categories/> 分类 </a><a class=menu-item href=/categories/documentation/> 文档 </a><a class=menu-item href=/about/> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw" aria-hidden=true></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw" aria-hidden=true></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="menu-item language" title=选择语言>
+<i class="fa fa-globe" aria-hidden=true></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/first_blog/ selected>简体中文</option></select>
+</a></div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Mazikai's Blog">Mazikai's Blog</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw" aria-hidden=true></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw" aria-hidden=true></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/posts/ title>所有文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a class=menu-item href=/categories/documentation/ title>文档</a><a class=menu-item href=/about/ title>关于</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class=menu-item title=选择语言>
+<i class="fa fa-globe fa-fw" aria-hidden=true></i>
+<select class=language-select onchange="location=this.value"><option value=/first_blog/ selected>简体中文</option></select>
+</a></div>
+</div>
+</header><div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div><main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Blog搭建过程</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>Mazikai</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/documentation/><i class="far fa-folder fa-fw" aria-hidden=true></i>文档</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2021-11-06>2021-11-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 2817 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 6 分钟&nbsp;<span id=/first_blog/ class=leancloud_visitors data-flag-title=Blog搭建过程>
+<i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+</span>&nbsp;</div>
+</div><div class="details toc" id=toc-static data-kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#所需工具>所需工具</a>
+<ul>
+<li><a href=#hugo--github-pages--github-actions--domainregistration><strong>Hugo + GitHub Pages + GitHub Actions + DomainRegistration</strong></a></li>
+</ul>
+</li>
+<li><a href=#1-概念>1 概念</a>
+<ul>
+<li><a href=#11-什么是-hugobr>1.1 什么是 Hugo？</br></a></li>
+<li><a href=#12-什么是-github-pagesbr>1.2 什么是 GitHub Pages？</br></a></li>
+<li><a href=#13-github-actionbr>1.3 Github Action</br></a></li>
+</ul>
+</li>
+<li><a href=#2-过程>2 过程</a>
+<ul>
+<li><a href=#21-配置hugo>2.1 配置Hugo</a>
+<ul>
+<li><a href=#211-安装hugobr>2.1.1 安装Hugo</br></a></li>
+<li><a href=#212-创建-hugo-网站br>2.1.2 创建 Hugo 网站</br></a></li>
+<li><a href=#213-配置主题br>2.1.3 配置主题</br></a></li>
+<li><a href=#214-发布文章>2.1.4 发布文章</a></li>
+<li><a href=#215-本地调试br>2.1.5 本地调试</br></a></li>
+</ul>
+</li>
+<li><a href=#22-创建github仓库>2.2 创建GitHub仓库</a></li>
+<li><a href=#23-创建github-page>2.3 创建GitHub Page</a></li>
+<li><a href=#24-创建github-actions>2.4 创建GitHub Actions</a></li>
+<li><a href=#25-博客绑定域名>2.5 博客绑定域名</a>
+<ul>
+<li><a href=#251-创建-cname>2.5.1 创建 CNAME</a></li>
+<li><a href=#252-添加-dns-解析>2.5.2 添加 DNS 解析</a></li>
+<li><a href=#253-修改设置>2.5.3 修改设置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#3-流程>3 流程</a></li>
+<li><a href=#4-总结>4 总结</a></li>
+<li><a href=#5-参考>5. 参考</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><blockquote>
+<p>博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流。</br>
+这是我的第一篇博客，记录我是如何搭建这个网站的！</p>
+</blockquote>
+</br>
+<h2 id=所需工具>所需工具</h2>
+<h3 id=hugo--github-pages--github-actions--domainregistration><strong>Hugo + GitHub Pages + GitHub Actions + DomainRegistration</strong></h3>
+<h2 id=1-概念>1 概念</h2>
+<h3 id=11-什么是-hugobr>1.1 什么是 Hugo？</br></h3>
+<p>Hugo 是用 Go 语言写的静态网站生成器（Static Site Generator）。可以把 Markdown 文件转化成 HTML 文件。</p>
+<h3 id=12-什么是-github-pagesbr>1.2 什么是 GitHub Pages？</br></h3>
+<p>GitHub Pages 是一组静态网页集合（Static Web Page），这些静态网页 HTML 文件由 GitHub 托管（host）和发布，所以是 GitHub + Pages。</p>
+<h3 id=13-github-actionbr>1.3 Github Action</br></h3>
+<p>Hugo 都是静态博客，即最终生成的是静态页面，而所谓部署就是把这些静态文件放到 web 服务器(比如 Nginx、Caddy) 的对应目录就行了。</br>
+因此整个 Github Action 只需要做两件事：</br>
+ 1）编译，生成静态文件</br>
+ 2）部署，把静态文件移动到合适的位置</br>
+   - 比如放到某个云服务器上</br>
+   - 或者放到 Github Pages</br>
+然后我们再通过 git push 来触发 Github Action 就可以了。</p>
+<h2 id=2-过程>2 过程</h2>
+<h3 id=21-配置hugo>2.1 配置Hugo</h3>
+<h4 id=211-安装hugobr>2.1.1 安装Hugo</br></h4>
+<p>这里使用包管理器安装 Hugo，我的操作系统是 Mac OS，所以使用 Homebrew 安装 Hugo。如果你使用的是 Windows 或 Linux，可以根据 Hugo 文档提示的方式安装： Hugo 文档：Install Hugo</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>brew install hugo
+
+<span class=c1># 查看 Hugo 是否安装成功，显示 Hugo 版本号代表 Hugo 安装成功。</span>
+hugo version
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=212-创建-hugo-网站br>2.1.2 创建 Hugo 网站</br></h4>
+<p>通过上述命令安装 hugo 程序后，就可以通过 hugo new site 命令进行网站创建、配置与本地调试了。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>hugo new site Blog
+</code></pre></td></tr></table>
+</div>
+</div><p><img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/image-2.png data-srcset="/first_blog/image-2.png, /first_blog/image-2.png 1.5x, /first_blog/image-2.png 2x" data-sizes=auto alt=/first_blog/image-2.png title="Alt text" width=519 height=206></br></p>
+<h4 id=213-配置主题br>2.1.3 配置主题</br></h4>
+<p>当通过上文命令创建我们的站点后，需要进行主题配置，Hugo 社区有了很丰富的主题，可以通过官网 Themes 菜单选择自己喜欢的风格，查看预览效果，选择后可以进入主题项目仓库，一般都会有很详细的安装及配置说明。下面我就以我目前在使用的 LoveIt 这个主题为例，演示一下配置流程。</p>
+<p>我们可以将主题仓库直接 git clone 下来进行使用，但这种方式有一些弊端，当之后自己对主题进行修改后，可能会与原主题产生一些冲突，不方便版本管理与后续更新。我采用的是将原主题仓库 fork 到自己的账户，并使用 git submodule 方式进行仓库链接，这样后续可以对主题的修改进行单独维护。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> blog-test/
+git init
+git submodule add https://github.com/pseudoyu/LoveIt themes/LoveIt
+</code></pre></td></tr></table>
+</div>
+</div><p>每个主题一般都会提供一些实例配置与初始页面，开始使用主题时可以将其 exampleSite/ 目录下的文件复制到站点目录下，在此基础上进行调整配置。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>cp -rf themes/LoveIt/exampleSite/* ./
+</code></pre></td></tr></table>
+</div>
+</div><p>初始化主题基础配置后，我们可以在 config.toml 文件中进行站点细节配置，具体配置项参考各主题说明文档。
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/config.png data-srcset="/first_blog/config.png, /first_blog/config.png 1.5x, /first_blog/config.png 2x" data-sizes=auto alt=/first_blog/config.png title=配置 width=1585 height=918></p>
+<h4 id=214-发布文章>2.1.4 发布文章</h4>
+<p>完成后，可以通过 hugo new 命令发布新文章。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>hugo new posts/blog-test.md
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=215-本地调试br>2.1.5 本地调试</br></h4>
+<p>Hugo 会生成静态网页，我们在本地编辑调试时可以通过 hugo server 命令进行本地实时调试预览，无须每次都重新生成。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>hugo server
+</code></pre></td></tr></table>
+</div>
+</div><p><img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/image-4.png data-srcset="/first_blog/image-4.png, /first_blog/image-4.png 1.5x, /first_blog/image-4.png 2x" data-sizes=auto alt=/first_blog/image-4.png title="Alt text" width=1157 height=590></p>
+<p>运行服务后，我们可以通过浏览器 http://localhost:1313 地址访问我们的本地预览网页。
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/image-5.png data-srcset="/first_blog/image-5.png, /first_blog/image-5.png 1.5x, /first_blog/image-5.png 2x" data-sizes=auto alt=/first_blog/image-5.png title="Alt text" width=1890 height=1009></p>
+<h3 id=22-创建github仓库>2.2 创建GitHub仓库</h3>
+<blockquote>
+<p>命名博客源仓库（username.github.io）</p>
+<p>勾选 Public，设置为公开仓库。</p>
+<p>勾选添加 README 文件
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/RepoCreate.png data-srcset="/first_blog/RepoCreate.png, /first_blog/RepoCreate.png 1.5x, /first_blog/RepoCreate.png 2x" data-sizes=auto alt=/first_blog/RepoCreate.png title=创建公有仓库 width=744 height=882></p>
+</blockquote>
+<h3 id=23-创建github-page>2.3 创建GitHub Page</h3>
+<blockquote>
+<p>在博客源仓库下创建GitHub Pages（Settings->Pages）
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/GitHubPagesCreate.png data-srcset="/first_blog/GitHubPagesCreate.png, /first_blog/GitHubPagesCreate.png 1.5x, /first_blog/GitHubPagesCreate.png 2x" data-sizes=auto alt=/first_blog/GitHubPagesCreate.png title="创建GitHub Pages" width=1695 height=931></p>
+</blockquote>
+<h3 id=24-创建github-actions>2.4 创建GitHub Actions</h3>
+<blockquote>
+<p>需要在仓库根目录下创建 .github/workflows 这个二级目录，然后在 workflows 下以 .yml 形式配置 Github Action。</p>
+</blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>publish to gh-pages</span><span class=w> </span><span class=c># 流水线名称</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w> </span><span class=c># on 表示 GitHub Action 触发条件</span><span class=w>
+</span><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=l>main</span><span class=w> </span><span class=c># main分支</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=nt>REGISTRY</span><span class=p>:</span><span class=w> </span><span class=l>ghcr.io</span><span class=w>
+</span><span class=w>  </span><span class=nt>IMAGE_NAME</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.repository }}</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w> </span><span class=c># jobs 表示 GitHub Action 中的任务</span><span class=w>
+</span><span class=w>  </span><span class=nt>build</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w> </span><span class=c># runs-on 表示 GitHub Action 运行环境，我们选择了 ubuntu-latest。</span><span class=w>
+</span><span class=w>    </span><span class=c># permissions:</span><span class=w>
+</span><span class=w>    </span><span class=c>#   contents: read</span><span class=w>
+</span><span class=w>    </span><span class=c>#   packages: write</span><span class=w>
+</span><span class=w>    </span><span class=nt>concurrency</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>group</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.workflow }}-${{ github.ref }}</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>checkout</span><span class=w> </span><span class=c># 检查</span><span class=w>
+</span><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v2</span><span class=w> </span><span class=c># uses 中的为 GitHub Action 中的一个插件</span><span class=w>
+</span><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>          </span><span class=nt>submodules</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>  </span><span class=c># Fetch Hugo themes (true OR recursive)</span><span class=w>
+</span><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>    </span><span class=c># Fetch all history for .GitInfo and .Lastmod</span><span class=w>
+</span><span class=w>
+</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>setup hugo</span><span class=w> </span><span class=c># 安装</span><span class=w>
+</span><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2 </span><span class=w>
+</span><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0.105.0&#39;</span><span class=w> </span><span class=c># hugo的版本号</span><span class=w>
+</span><span class=w>          </span><span class=nt>extended</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span><span class=w>
+</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>build web</span><span class=w> </span><span class=c># 构建</span><span class=w>
+</span><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>hugo --minify</span><span class=w>
+</span><span class=w>
+</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>deploy web</span><span class=w> </span><span class=c># 部署</span><span class=w>
+</span><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v3</span><span class=w>
+</span><span class=w>        </span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.ref == &#39;refs/heads/main&#39; }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>          </span><span class=nt>github_token</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GH_PAGE_ACTION_TOKEN }}</span><span class=w>
+</span><span class=w>          </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>./public</span><span class=w>
+</span><span class=w>          </span><span class=nt>cname</span><span class=p>:</span><span class=w> </span><span class=l>mazikai002.cn</span><span class=w> </span><span class=c># 重点 ！！！个人域名使用</span><span class=w>
+</span><span class=w>          </span><span class=c># PUBLISH_BRANCH: gh-pages，peaceiris/actions-gh-pages@v3插件默认指定生成分支</span><span class=w>
+</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>整个 Action 一个包含 4 个步骤：</br>
+1）拉取代码</br>
+2）准备 hugo 环境</br>
+3）使用 hugo 编译生成静态文件</br>
+4）把生成的静态文件发布到 Github Pages</br>
+以上需要特别注意的是 Hugo 的版本以及是否启用 hugo 扩展。</p>
+<p>因为我们需要从仓库的main分支推送到仓库的gh-pages分支，这需要特定权限，故要在 GitHub 账户下 Setting - Developer setting - Personal access tokens 下创建一个 Token。
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/token.png data-srcset="/first_blog/token.png, /first_blog/token.png 1.5x, /first_blog/token.png 2x" data-sizes=auto alt=/first_blog/token.png title=Token width=1901 height=522>
+权限需要开启admin:org(read write)、repo、workflow三块权限。</p>
+<p>配置后复制生成的 Token（注：只会出现一次），然后在我们博客源仓库的 Settings - Secrets and variables - Actions - Environment secrets 中添加 GITHUB_TOKEN 环境变量为刚才的 Token，这样 GitHub Action 就可以获取到 Token 了。
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/image.png data-srcset="/first_blog/image.png, /first_blog/image.png 1.5x, /first_blog/image.png 2x" data-sizes=auto alt=/first_blog/image.png title=configToken width=1890 height=936>
+同时 Settings - Actions - General的最下方的一个选项选择Read and write permissions
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/image-1.png data-srcset="/first_blog/image-1.png, /first_blog/image-1.png 1.5x, /first_blog/image-1.png 2x" data-sizes=auto alt=/first_blog/image-1.png title="workFlow permissions" width=1414 height=878>
+完成上述配置后，推送代码至仓库，即可触发 GitHub Action，自动生成博客页面并推送至 GitHub Pages 仓库。</p>
+<h3 id=25-博客绑定域名>2.5 博客绑定域名</h3>
+<h4 id=251-创建-cname>2.5.1 创建 CNAME</h4>
+<p>首先在你的库下面添加一个 CNAME （别名记录）文件，建议直接在 GitHub 那创建!(这一步在workflows的yml文件中最后一行已经配置)，参考你的域名进行编写。</br>
+<img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/domian.png data-srcset="/first_blog/domian.png, /first_blog/domian.png 1.5x, /first_blog/domian.png 2x" data-sizes=auto alt=/first_blog/domian.png title=域名 width=431 height=39></p>
+<h4 id=252-添加-dns-解析>2.5.2 添加 DNS 解析</h4>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=/first_blog/%E8%85%BE%E8%AE%AF%E4%BA%91DNS.png data-srcset="/first_blog/%E8%85%BE%E8%AE%AF%E4%BA%91DNS.png, /first_blog/%E8%85%BE%E8%AE%AF%E4%BA%91DNS.png 1.5x, /first_blog/%E8%85%BE%E8%AE%AF%E4%BA%91DNS.png 2x" data-sizes=auto alt=/first_blog/%E8%85%BE%E8%AE%AF%E4%BA%91DNS.png title=腾讯云DNS.png width=1520 height=443>
+然后是添加解析，我域名是在腾讯云买的，所以直接在腾讯云那添加解析了。</br>
+我添加的解析如下,供参考，记得把 username 改成你自己的。</p>
+<blockquote>
+<p>@ A 185.199.109.153</p>
+<p>@ A 185.199.110.153</p>
+<p>www CNAME username.github.io.
+A 记录的 ip 地址可以在下面中选择</p>
+</blockquote>
+<blockquote>
+<p>185.199.108.153</p>
+<p>185.199.109.153</p>
+<p>185.199.110.153</p>
+<p>185.199.111.153</p>
+</blockquote>
+<h4 id=253-修改设置>2.5.3 修改设置</h4>
+<p>添加完成后进入库的设置，找到 GitHub Pages ，如果能看到类似 Your site is published at <a href=https://mazikai002.cn/ target=_blank rel="noopener noreffer">https://mazikai002.cn/</a> 这样的文字，说明就搞定了。</p>
+<p>Enforce HTTPS 最好勾选上，GitHub 提供的这个可以直接让你的网站从 HTTP 升级到 HTTPS，非常赞。</p>
+<h2 id=3-流程>3 流程</h2>
+<ul>
+<li>使用hugo创建个人站点，hugo new site，hugo new post&mldr;</li>
+<li>git commit 提交</li>
+<li>触发 github action .github/workflows/my-pipeline.yml 并满足设置中的 on 条件</li>
+<li>触发 pipeline 中的 steps
+<ul>
+<li>checkout：相当与 git clone，并且后续操作具有 github 完整权限，可以通过 permissions 设置</li>
+<li>setup hugo：准备构建要求，安装对应版本，注意是否需要 extended</li>
+<li>build：构建出静态文件，并输出到 public 文件夹</li>
+<li>deploy：该插件来自 插件市场
+<ul>
+<li>自动创建分支 gh-pages</li>
+<li>自动 copy public 到新分支</li>
+<li>自动提交</li>
+<li>自动生成 CNAME 文件，根据 cname 设置，想要 自定义域名 的注意这里了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>打开 <a href=https://github.com/%7b target=_blank rel="noopener noreffer">https://github.com/{</a>你的名字}/{你的仓库}/settings/pages（后续步骤只需要一次）
+<ul>
+<li>Source 选择 gh-pages ，文件夹: 默认 / (root) ，并 save
+注意上方提示 Your site is ready to be published at <a href=https://xxx.github.io/xxx/ target=_blank rel="noopener noreffer">https://xxx.github.io/xxx/</a></li>
+<li>将域名部分做 解析</li>
+<li>Custom domain 设置 自己的域名</li>
+<li>Enforce HTTPS 点一下，然后等一会</li>
+</ul>
+</li>
+</ul>
+<h2 id=4-总结>4 总结</h2>
+<p>可以将主题下相关文件复制到 blog 网站根目录下，因为这样可以直接渲染网站效果，而又不影响主题本身的内容。 主要是 themes\LoveIt\exampleSite 目录下文件。</p>
+<p>发布文章如果有参数 draft ，记得将值设为 false，或者删除 draft，不然会被认定为草稿只能本地运行而不能运行到网站上。</p>
+<p>Hogo方式搭建博客基本就是安装，建站，下载主题，配置主题参数，编写几大内容。</p>
+<p>使用 GitHub Pages + GitHub Actions 方式部署博客可以节省传统的构建部署繁琐步骤，简化搭建博客的过程，让个人博客爱好者更能专注于自身博客的内部撰写，而不用拘泥于博客整体的维护过程，提高效率</p>
+<h2 id=5-参考>5. 参考</h2>
+<p><a href=https://huweicai.com/ target=_blank rel="noopener noreffer">https://huweicai.com/</a></br>
+<a href=https://www.pseudoyu.com/zh/2022/05/29/deploy_your_blog_using_hugo_and_github_action/ target=_blank rel="noopener noreffer">https://www.pseudoyu.com/zh/2022/05/29/deploy_your_blog_using_hugo_and_github_action/</a></br>
+<a href=https://cuttontail.blog/blog/create-a-wesite-using-github-pages-and-hugo/ target=_blank rel="noopener noreffer">https://cuttontail.blog/blog/create-a-wesite-using-github-pages-and-hugo/</a></br>
+<a href="https://blog.csdn.net/wolanx/article/details/122857729?spm=1001.2014.3001.5502" target=_blank rel="noopener noreffer">https://blog.csdn.net/wolanx/article/details/122857729?spm=1001.2014.3001.5502</a></br>
+<a href=https://cloud.tencent.com/developer/article/1421879 target=_blank rel="noopener noreffer">https://cloud.tencent.com/developer/article/1421879</a></br>
+<a href=https://h1z3y3.me/posts/hugo-auto-deploy-github-with-actions/ target=_blank rel="noopener noreffer">https://h1z3y3.me/posts/hugo-auto-deploy-github-with-actions/</a></br></p></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>更新于 2024-03-04&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/009c295dfb6f37e5913e42987b21e438bb0a2ebe target=_blank title="commit by mazikai002(12685439+mazikai002@user.noreply.gitee.com) 009c295dfb6f37e5913e42987b21e438bb0a2ebe: feat:29 commit">
+<i class="fas fa-hashtag fa-fw" aria-hidden=true></i>009c295</a></span>
+</div></div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/first_blog/index.md target=_blank>阅读原始文档</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://mazikai002.github.io/first_blog/ data-title=Blog搭建过程 data-via=mazikai002 data-hashtags=installation,configuration><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://mazikai002.github.io/first_blog/ data-hashtag=installation><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://mazikai002.github.io/first_blog/ data-title=Blog搭建过程><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://mazikai002.github.io/first_blog/ data-title=Blog搭建过程><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://mazikai002.github.io/first_blog/ data-title=Blog搭建过程><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/installation/>安装</a>,&nbsp;<a href=/tags/configuration/>配置</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
+</section>
+</div>
+<div class=post-nav></div>
+</div>
+<div id=comments><div id=valine class=comment></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2019 - 2024</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>mazikai002</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw" aria-hidden=true></i>
+</a>
+</div><link rel=stylesheet href=/lib/valine/valine.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:50},comment:{valine:{appId:"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI",appKey:"WBmoGyJtbqUswvfLh6L8iEBr",avatar:"mp",el:"#valine",emojiCDN:"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/",emojiMaps:{100:"1f4af.png",alien:"1f47d.png",anger:"1f4a2.png",angry:"1f620.png",anguished:"1f627.png",astonished:"1f632.png",black_heart:"1f5a4.png",blue_heart:"1f499.png",blush:"1f60a.png",bomb:"1f4a3.png",boom:"1f4a5.png",broken_heart:"1f494.png",brown_heart:"1f90e.png",clown_face:"1f921.png",cold_face:"1f976.png",cold_sweat:"1f630.png",confounded:"1f616.png",confused:"1f615.png",cry:"1f622.png",crying_cat_face:"1f63f.png",cupid:"1f498.png",dash:"1f4a8.png",disappointed:"1f61e.png",disappointed_relieved:"1f625.png",dizzy:"1f4ab.png",dizzy_face:"1f635.png",drooling_face:"1f924.png",exploding_head:"1f92f.png",expressionless:"1f611.png",face_vomiting:"1f92e.png",face_with_cowboy_hat:"1f920.png",face_with_hand_over_mouth:"1f92d.png",face_with_head_bandage:"1f915.png",face_with_monocle:"1f9d0.png",face_with_raised_eyebrow:"1f928.png",face_with_rolling_eyes:"1f644.png",face_with_symbols_on_mouth:"1f92c.png",face_with_thermometer:"1f912.png",fearful:"1f628.png",flushed:"1f633.png",frowning:"1f626.png",ghost:"1f47b.png",gift_heart:"1f49d.png",green_heart:"1f49a.png",grimacing:"1f62c.png",grin:"1f601.png",grinning:"1f600.png",hankey:"1f4a9.png",hear_no_evil:"1f649.png",heart:"2764-fe0f.png",heart_decoration:"1f49f.png",heart_eyes:"1f60d.png",heart_eyes_cat:"1f63b.png",heartbeat:"1f493.png",heartpulse:"1f497.png",heavy_heart_exclamation_mark_ornament:"2763-fe0f.png",hole:"1f573-fe0f.png",hot_face:"1f975.png",hugging_face:"1f917.png",hushed:"1f62f.png",imp:"1f47f.png",innocent:"1f607.png",japanese_goblin:"1f47a.png",japanese_ogre:"1f479.png",joy:"1f602.png",joy_cat:"1f639.png",kiss:"1f48b.png",kissing:"1f617.png",kissing_cat:"1f63d.png",kissing_closed_eyes:"1f61a.png",kissing_heart:"1f618.png",kissing_smiling_eyes:"1f619.png",laughing:"1f606.png",left_speech_bubble:"1f5e8-fe0f.png",love_letter:"1f48c.png",lying_face:"1f925.png",mask:"1f637.png",money_mouth_face:"1f911.png",nauseated_face:"1f922.png",nerd_face:"1f913.png",neutral_face:"1f610.png",no_mouth:"1f636.png",open_mouth:"1f62e.png",orange_heart:"1f9e1.png",partying_face:"1f973.png",pensive:"1f614.png",persevere:"1f623.png",pleading_face:"1f97a.png",pouting_cat:"1f63e.png",purple_heart:"1f49c.png",rage:"1f621.png",relaxed:"263a-fe0f.png",relieved:"1f60c.png",revolving_hearts:"1f49e.png",right_anger_bubble:"1f5ef-fe0f.png",robot_face:"1f916.png",rolling_on_the_floor_laughing:"1f923.png",scream:"1f631.png",scream_cat:"1f640.png",see_no_evil:"1f648.png",shushing_face:"1f92b.png",skull:"1f480.png",skull_and_crossbones:"2620-fe0f.png",sleeping:"1f634.png",sleepy:"1f62a.png",slightly_frowning_face:"1f641.png",slightly_smiling_face:"1f642.png",smile:"1f604.png",smile_cat:"1f638.png",smiley:"1f603.png",smiley_cat:"1f63a.png",smiling_face_with_3_hearts:"1f970.png",smiling_imp:"1f608.png",smirk:"1f60f.png",smirk_cat:"1f63c.png",sneezing_face:"1f927.png",sob:"1f62d.png",space_invader:"1f47e.png",sparkling_heart:"1f496.png",speak_no_evil:"1f64a.png",speech_balloon:"1f4ac.png","star-struck":"1f929.png",stuck_out_tongue:"1f61b.png",stuck_out_tongue_closed_eyes:"1f61d.png",stuck_out_tongue_winking_eye:"1f61c.png",sunglasses:"1f60e.png",sweat:"1f613.png",sweat_drops:"1f4a6.png",sweat_smile:"1f605.png",thinking_face:"1f914.png",thought_balloon:"1f4ad.png",tired_face:"1f62b.png",triumph:"1f624.png",two_hearts:"1f495.png",unamused:"1f612.png",upside_down_face:"1f643.png",weary:"1f629.png",white_frowning_face:"2639-fe0f.png",white_heart:"1f90d.png",wink:"1f609.png",woozy_face:"1f974.png",worried:"1f61f.png",yawning_face:"1f971.png",yellow_heart:"1f49b.png",yum:"1f60b.png",zany_face:"1f92a.png",zipper_mouth_face:"1f910.png",zzz:"1f4a4.png"},enableQQ:!1,highlight:!0,lang:"zh-CN",pageSize:10,placeholder:"你的评论 ...",recordIP:!0,serverURLs:"https://leancloud.hugoloveit.com",visitor:!0}},lightgallery:!0,search:{algoliaAppID:"PASDMWALPK",algoliaIndex:"index.zh-cn",algoliaSearchKey:"b42948e51daaa93df92381c8e2ac0f93",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
