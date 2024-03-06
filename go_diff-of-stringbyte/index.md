@@ -1,4 +1,4 @@
-# Go 基本语法 —— []byte和string的不同
+# Golang 基本语法 —— []byte和string的不同
 
 
 >[]byte和string的不同</br>

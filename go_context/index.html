@@ -3,22 +3,22 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
-<title>Golang 基本语法 —— struct可以比较吗 - Mazikai's Blog</title><meta name=Description content="struct可以比较吗"><meta property="og:title" content="Golang 基本语法 —— struct可以比较吗">
-<meta property="og:description" content="struct可以比较吗">
+<title>Golang 基本语法 —— 浅谈 Context - Mazikai's Blog</title><meta name=Description content="浅谈Context"><meta property="og:title" content="Golang 基本语法 —— 浅谈 Context">
+<meta property="og:description" content="浅谈Context">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mazikai002.github.io/go_struct/"><meta property="og:image" content="https://mazikai002.github.io/go_struct/featured-image.jpg"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-03-18T18:27:25+08:00">
+<meta property="og:url" content="https://mazikai002.github.io/go_context/"><meta property="og:image" content="https://mazikai002.github.io/go_context/featured-image.jpg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-05-22T19:53:39+08:00">
 <meta property="article:modified_time" content="2024-03-06T16:35:10+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://mazikai002.github.io/go_struct/featured-image.jpg">
-<meta name=twitter:title content="Golang 基本语法 —— struct可以比较吗">
-<meta name=twitter:description content="struct可以比较吗">
+<meta name=twitter:image content="https://mazikai002.github.io/go_context/featured-image.jpg">
+<meta name=twitter:title content="Golang 基本语法 —— 浅谈 Context">
+<meta name=twitter:description content="浅谈Context">
 <meta name=application-name content="LoveIt">
 <meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go_struct/><link rel=prev href=https://mazikai002.github.io/go_diff-of-stringbyte/><link rel=next href=https://mazikai002.github.io/go_context/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go_context/><link rel=prev href=https://mazikai002.github.io/go_struct/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— struct可以比较吗","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go_struct\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go_struct\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1668,"url":"https:\/\/mazikai002.github.io\/go_struct\/","datePublished":"2022-03-18T18:27:25+08:00","dateModified":"2024-03-06T16:35:10+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"struct可以比较吗"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— 浅谈 Context","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go_context\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go_context\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":927,"url":"https:\/\/mazikai002.github.io\/go_context\/","datePublished":"2022-05-22T19:53:39+08:00","dateModified":"2024-03-06T16:35:10+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"浅谈Context"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -41,7 +41,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="menu-item language" title=选择语言>
 <i class="fa fa-globe" aria-hidden=true></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go_struct/ selected>简体中文</option></select>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go_context/ selected>简体中文</option></select>
 </a></div>
 </div>
 </div>
@@ -75,7 +75,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>
 <i class="fa fa-globe fa-fw" aria-hidden=true></i>
-<select class=language-select onchange="location=this.value"><option value=/go_struct/ selected>简体中文</option></select>
+<select class=language-select onchange="location=this.value"><option value=/go_context/ selected>简体中文</option></select>
 </a></div>
 </div>
 </header><div class="search-dropdown desktop">
@@ -87,312 +87,33 @@
 <div class=container><div class=toc id=toc-auto>
 <h2 class=toc-title>目录</h2>
 <div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Golang 基本语法 —— struct可以比较吗</h1><div class=post-meta>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Golang 基本语法 —— 浅谈 Context</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-03-18>2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1668 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;<span id=/go_struct/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— struct可以比较吗">
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-05-22>2022-05-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 927 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;<span id=/go_context/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— 浅谈 Context">
 <i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
-</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/go_struct/featured-image.jpg data-srcset="/go_struct/featured-image.jpg, /go_struct/featured-image.jpg 1.5x, /go_struct/featured-image.jpg 2x" data-sizes=auto alt=/go_struct/featured-image.jpg title=struct可以比较吗></div><div class="details toc" id=toc-static data-kept>
+</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/go_context/featured-image.jpg data-srcset="/go_context/featured-image.jpg, /go_context/featured-image.jpg 1.5x, /go_context/featured-image.jpg 2x" data-sizes=auto alt=/go_context/featured-image.jpg title=浅谈Context></div><div class="details toc" id=toc-static data-kept>
 <div class="details-summary toc-title">
 <span>目录</span>
 <span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
 </div>
-<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents></nav></div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#context包-父子关系>Context包 父子关系</a></li>
+</ul>
+</nav></div>
 </div><div class=content id=content><blockquote>
-<p>struct能不能比较？得分情况！</br></p>
+<p>context为Go中的一个标准库, 专门用来处理多个协程之间的控制问题, 比如协程的取消, 协程运行截止时间, 协程运行的超时时间, 协程之间的数据传输等.</br></p>
 </blockquote>
-<p>struct能不能比较？ 很显然这句话包含了两种情况：</br>
-同一个struct的两个实例能不能比较？</br>
-两个不同的struct的实例能不能比较？</br>
-在分析上面两个问题前，先梳理一下golang中，哪些数据类型是可比较的，哪些是不可比较的：</br>
-可比较：Integer，Floating-point，String，Boolean，Complex(复数型)，Pointer，Channel，Interface，Array</br>
-不可比较：Slice，Map，Function</br>
-同一个struct</br>
-同一个struct的两个实例可比较也不可比较，当结构不包含不可直接比较成员变量时可直接比较，否则不可直接比较</br></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>type S struct {
-    Name    string
-    Age     int
-    Address *int
-}
-
-func main() {
-    a := S{
-        Name:    &#34;aa&#34;,
-        Age:     1,
-        Address: new(int),
-    }
-    b := S{
-        Name:    &#34;aa&#34;,
-        Age:     1,
-        Address: new(int),
-    }
-
-      fmt.Println(a == b)
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>这段代码会输出false
-因为上面的结构体不包含不可比较的成员变量，所以是可以比较的</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>type S struct {
-    Name    string
-    Age     int
-    Address *int
-      Data    []int
-}
-
-func main() {
-    a := S{
-        Name:    &#34;aa&#34;,
-        Age:     1,
-        Address: new(int),
-            Data:    []int{1, 2, 3},
-    }
-    b := S{
-        Name:    &#34;aa&#34;,
-        Age:     1,
-        Address: new(int),
-            Data:    []int{1, 2, 3},
-    }
-
-      fmt.Println(a == b)
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>这段代码的输出是：./prog.go:28:14: invalid operation: a == b (struct containing []int cannot be compared)
-因为结构体包含了不可比较的成员变量slice，导致代码编译不通过
-reflect.DeepEqual
-用来对含有不可直接比较的数据类型的结构体实例进行比较</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>type S struct {
-    Name    string
-    Age     int
-    Address *int
-      Data    []int
-}
-
-func main() {
-    a := S{
-        Name:    &#34;aa&#34;,
-        Age:     1,
-        Address: new(int),
-            Data:    []int{1, 2, 3},
-    }
-    b := S{
-        Name:    &#34;aa&#34;,
-        Age:     1,
-        Address: new(int),
-            Data:    []int{1, 2, 3},
-    }
-
-      fmt.Println(reflect.DeepEqual(a, b))
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>这段代码返回true
-DeepEqual函数用来判断两个值是否深度一致。具体比较规则如下：
-不同类型的值永远不会深度相等
-当两个数组的元素对应深度相等时，两个数组深度相等
-当两个相同结构体的所有字段对应深度相等的时候，两个结构体深度相等
-当两个函数都为nil时，两个函数深度相等，其他情况不相等（相同函数也不相等）
-当两个interface的真实值深度相等时，两个interface深度相等
-map的比较需要同时满足以下几个
-两个map都为nil或者都不为nil，并且长度要相等
-相同的map对象或者所有key要对应相同
-map对应的value也要深度相等
-指针，满足以下其一即是深度相等
-两个指针满足go的==操作符
-两个指针指向的值是深度相等的
-切片，需要同时满足以下几点才是深度相等
-两个切片都为nil或者都不为nil，并且长度要相等
-两个切片底层数据指向的第一个位置要相同或者底层的元素要深度相等
-注意：空的切片跟nil切片是不深度相等的
-其他类型的值（numbers, bools, strings, channels）如果满足go的==操作符，则是深度相等的。要注意不是所有的值都深度相等于自己，例如函数，以及嵌套包含这些值的结构体，数组等
-不同的struct
-可以比较，也不可以比较，不含有不可比较类型的时候可以通过强转来比较。</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>type T2 struct {
-    Name  string
-    Age   int
-    Arr   [2]bool
-    ptr   *int
-}
-
-type T3 struct {
-    Name  string
-    Age   int
-    Arr   [2]bool
-    ptr   *int
-}
-
-func main() {
-    var ss1 T2
-    var ss2 T3
-    // Cannot use &#39;ss2&#39; (type T3) as type T2 in assignment
-    //ss1 = ss2     // 不同结构体之间是不可以赋值的
-    ss3 := T2(ss2)
-    fmt.Println(ss3==ss1) // true
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>这段代码返回true
-但是当结构体包含不可比较的成员变量时候，强转比较也会报错</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>type T2 struct {
-    Name  string
-    Age   int
-    Arr   [2]bool
-    ptr   *int
-    map1  map[string]string
-}
-
-type T3 struct {
-    Name  string
-    Age   int
-    Arr   [2]bool
-    ptr   *int
-    map1  map[string]string
-}
-
-func main() {
-    var ss1 T2
-    var ss2 T3
-    
-    ss3 := T2(ss2)
-    fmt.Println(ss3==ss1)   // 含有不可比较成员变量
-}
-</code></pre></td></tr></table>
-</div>
-</div><p>./prog.go:28:14: invalid operation: ss3 == ss1 (struct containing map[string]string cannot be compared)
-含有不能比较的结构体互转后可以使用deepequal比较</p>
+<h1 id=context使用规则>context使用规则</h1>
+<ol>
+<li>context要作为函数的第一个参数使用, 不要试图将它放入结构体中</li>
+<li>当方法或函数需要一个context时, 不要传入nil, 可以传入context.TODO</li>
+<li>context可以传入到不同的协程中,** 并且在多个协程中是安全的**</li>
+<li>当context传入到子协程中时, 需要在子协程中监控conext.Done()返回的通道, 当收到通知时, 停止当前子协程的运行, 释放资源并返回到上层</li>
+</ol>
+<h1 id=并发安全>并发安全？</h1>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -420,44 +141,47 @@ func main() {
 </span><span class=lnt>23
 </span><span class=lnt>24
 </span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>import (
-  &#34;fmt&#34;
-  &#34;reflect&#34;
-)
-
-type T2 struct {
-  Name string
-  Age  int
-  Arr  [2]bool
-  ptr  *int
-  map1 map[string]string
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>func main()  {
+ ctx := context.WithValue(context.Background(), &#34;asong&#34;, &#34;test01&#34;)
+ go func() {
+  for {
+   _ = context.WithValue(ctx, &#34;asong&#34;, &#34;test02&#34;)
+  }
+ }()
+ go func() {
+  for {
+   _ = context.WithValue(ctx, &#34;asong&#34;, &#34;test03&#34;)
+  }
+ }()
+ go func() {
+  for {
+   fmt.Println(ctx.Value(&#34;asong&#34;))
+  }
+ }()
+ go func() {
+  for {
+   fmt.Println(ctx.Value(&#34;asong&#34;))
+  }
+ }()
+ time.Sleep(10 * time.Second)
 }
 
-type T3 struct {
-  Name string
-  Age  int
-  Arr  [2]bool
-  ptr  *int
-  map1 map[string]string
-}
-
-func main() {
-  var ss1 T2
-  var ss2 T3
-
-  ss3 := T2(ss2)
-  fmt.Println(reflect.DeepEqual(ss3, ss1)) // 含有不可比较成员变量
-}
 </code></pre></td></tr></table>
 </div>
-</div><p>这段代码返回true
-问：struct可以作为map的key么
-struct必须是可比较的，才能作为key，否则编译时报错</p>
+</div><p><code>context</code>添加的键值对一个链式的，会不断衍生新的<code>context</code>，所以<code>context</code>本身是不可变的**，因此是线程安全的。**</p>
+<p>!https://secure2.wostatic.cn/static/uSBmnegpS63aHSVxPCKCkq/image.png?auth_key=1709437657-jBqxaGan91qXdknbrRbeKZ-0-fb5050a3090ee6e8b1e7750c44241b3c</p>
+<h2 id=context包-父子关系>Context包 父子关系</h2>
+<p><strong>控制是从上至下的，查找是从下至上的。</strong></p>
+<p>context 的实例之间存在父子关系：</p>
+<ul>
+<li>当父亲取消或者超时，所有派生的子context 都被取消或者超时</li>
+<li>找 key 的时候，子 context 先看自己有没有，没有则去祖先里面找控制是从上至下的，查找是从下至上的。</li>
+<li>父context是无法拿到子context的key的值得，只能看到自己的</li>
+</ul>
+<h1 id=contextwithcancel的使用>context.WithCancel的使用</h1>
+<p>withcancel 使用demo，我理解就是当前线程用来控制子协程退出的工具</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -499,51 +223,124 @@ struct必须是可比较的，才能作为key，否则编译时报错</p>
 </span><span class=lnt>37
 </span><span class=lnt>38
 </span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>type T1 struct {
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
 
-  Name  string
+<span class=kn>import</span> <span class=p>(</span>
+  <span class=s>&#34;context&#34;</span>
+  <span class=s>&#34;fmt&#34;</span>
+  <span class=s>&#34;time&#34;</span>
+<span class=p>)</span>
 
-  Age   int
+<span class=kd>func</span> <span class=nf>slowfunc1</span><span class=p>(</span><span class=nx>ctx</span> <span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>defer</span> <span class=kd>func</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;end slowfunc1&#34;</span><span class=p>)</span>
+  <span class=p>}()</span>
+  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;start slowfunc1&#34;</span><span class=p>)</span>
+  <span class=k>for</span> <span class=p>{</span>
+    <span class=k>select</span> <span class=p>{</span>
+    <span class=k>case</span> <span class=o>&lt;-</span><span class=nx>ctx</span><span class=p>.</span><span class=nf>Done</span><span class=p>():</span>
+      <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;slowfunc1 end by main&#34;</span><span class=p>)</span>
+      <span class=k>return</span>
+    <span class=k>default</span><span class=p>:</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+<span class=p>}</span>
 
-  Arr   [2]bool
+<span class=kd>func</span> <span class=nf>slowfunc</span><span class=p>(</span><span class=nx>ctx</span> <span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>defer</span> <span class=kd>func</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;end slowfunc&#34;</span><span class=p>)</span>
+  <span class=p>}()</span>
+  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;start slowfunc&#34;</span><span class=p>)</span>
+  <span class=k>go</span> <span class=nf>slowfunc1</span><span class=p>(</span><span class=nx>ctx</span><span class=p>)</span>
+  <span class=k>for</span> <span class=p>{</span>
+    <span class=k>select</span> <span class=p>{</span>
+    <span class=k>case</span> <span class=o>&lt;-</span><span class=nx>ctx</span><span class=p>.</span><span class=nf>Done</span><span class=p>():</span>
+      <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;slowfunc end by main&#34;</span><span class=p>)</span>
+      <span class=k>return</span>
+    <span class=k>default</span><span class=p>:</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+<span class=p>}</span>
 
-  ptr   *int
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;start main &#34;</span><span class=p>)</span>
+  <span class=nx>ctx</span> <span class=o>:=</span> <span class=nx>context</span><span class=p>.</span><span class=nf>Background</span><span class=p>()</span>
+  <span class=nx>ctxWithCancel</span><span class=p>,</span> <span class=nx>cancelfunc</span> <span class=o>:=</span> <span class=nx>context</span><span class=p>.</span><span class=nf>WithCancel</span><span class=p>(</span><span class=nx>ctx</span><span class=p>)</span>
+  <span class=k>defer</span> <span class=kd>func</span><span class=p>()</span> <span class=p>{</span>
+    <span class=c1>//cancelfunc()
+</span><span class=c1></span>    <span class=nx>time</span><span class=p>.</span><span class=nf>Sleep</span><span class=p>(</span><span class=mi>2</span> <span class=o>*</span> <span class=nx>time</span><span class=p>.</span><span class=nx>Second</span><span class=p>)</span> <span class=c1>// 不等待的话子线程来不及打印，但是会退出
+</span><span class=c1></span>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;end main&#34;</span><span class=p>)</span>
+    <span class=c1>// cancelfunc()
+</span><span class=c1></span>  <span class=p>}()</span>
+  <span class=k>go</span> <span class=nf>slowfunc</span><span class=p>(</span><span class=nx>ctxWithCancel</span><span class=p>)</span>
+  <span class=nx>time</span><span class=p>.</span><span class=nf>Sleep</span><span class=p>(</span><span class=mi>3</span> <span class=o>*</span> <span class=nx>time</span><span class=p>.</span><span class=nx>Second</span><span class=p>)</span>
+  <span class=nf>cancelfunc</span><span class=p>()</span>
+<span class=p>}</span>
 
-  slice []int
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=contextwithvalue的使用>context.WithValue的使用</h1>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>func valueFunc()  {
+    // 使用context.WithValue创建一个conext
+    // 设置要通过context要传递的键值
+    ctx := context.WithValue(context.Background(), &#34;key&#34;, &#34;value&#34;)
+ 
+    go valueFunc2(ctx)
+ 
+    time.Sleep(time.Second)
+ }
+ 
+ func valueFunc2(ctx context.Context)  {
+ 
+    // 通过context提供的Value方法来获取数据
+    v := ctx.Value(&#34;key&#34;)
+ 
+    fmt.Println(&#34;value: &#34;, v)
+ }
 
-  map1  map[string]string
-
-}
-
-type T2 struct {
-
-  Name string
-
-  Age  int
-
-  Arr  [2]bool
-
-  ptr  *int
-
-}
-
-func main() {
-
-  // n := make(map[T2]string, 0) // 无报错
-
-  // fmt.Print(n)                // map[]
-
-  m := make(map[T1]string, 0)
-
-  fmt.Println(m) // invalid map key type T1
-
-}
 </code></pre></td></tr></table>
 </div>
 </div><h1 id=参考>参考</h1>
-<p><a href=https://www.jianshu.com/p/5641648664d8 target=_blank rel="noopener noreffer">https://www.jianshu.com/p/5641648664d8</a></p></div><div class=post-footer id=post-footer>
+<p><a href=https://juejin.cn/post/7001273893780471845 target=_blank rel="noopener noreffer">https://juejin.cn/post/7001273893780471845</a></p></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
@@ -552,7 +349,7 @@ func main() {
 </div></div>
 <div class=post-info-line>
 <div class=post-info-md><span>
-<a class=link-to-markdown href=/go_struct/index.md target=_blank>阅读原始文档</a>
+<a class=link-to-markdown href=/go_context/index.md target=_blank>阅读原始文档</a>
 </span></div>
 <div class=post-info-share>
 <span></span>
@@ -565,8 +362,7 @@ func main() {
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/go_diff-of-stringbyte/ class=prev rel=prev title="Golang 基本语法 —— []byte和string的不同"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Golang 基本语法 —— []byte和string的不同</a>
-<a href=/go_context/ class=next rel=next title="Golang 基本语法 —— 浅谈 Context">Golang 基本语法 —— 浅谈 Context<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+<div class=post-nav><a href=/go_struct/ class=prev rel=prev title="Golang 基本语法 —— struct可以比较吗"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Golang 基本语法 —— struct可以比较吗</a></div>
 </div>
 <div id=comments><div id=valine class=comment></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.

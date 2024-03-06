@@ -3,22 +3,22 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
-<title>Go 基本语法 —— []byte和string的不同 - Mazikai's Blog</title><meta name=Description content="make和new是内置函数，不是关键字，var是关键字"><meta property="og:title" content="Go 基本语法 —— []byte和string的不同">
+<title>Golang 基本语法 —— []byte和string的不同 - Mazikai's Blog</title><meta name=Description content="make和new是内置函数，不是关键字，var是关键字"><meta property="og:title" content="Golang 基本语法 —— []byte和string的不同">
 <meta property="og:description" content="make和new是内置函数，不是关键字，var是关键字">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mazikai002.github.io/go_diff-of-stringbyte/"><meta property="og:image" content="https://mazikai002.github.io/go_diff-of-stringbyte/featured-image.jpg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-01-21T22:42:19+08:00">
-<meta property="article:modified_time" content="2024-03-06T16:21:50+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-06T16:35:10+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/go_diff-of-stringbyte/featured-image.jpg">
-<meta name=twitter:title content="Go 基本语法 —— []byte和string的不同">
+<meta name=twitter:title content="Golang 基本语法 —— []byte和string的不同">
 <meta name=twitter:description content="make和new是内置函数，不是关键字，var是关键字">
 <meta name=application-name content="LoveIt">
 <meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go_diff-of-stringbyte/><link rel=prev href=https://mazikai002.github.io/go_diff-of-newmake/><link rel=next href=https://mazikai002.github.io/go_struct/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Go 基本语法 —— []byte和string的不同","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go_diff-of-stringbyte\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go_diff-of-stringbyte\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"Go","wordcount":2219,"url":"https:\/\/mazikai002.github.io\/go_diff-of-stringbyte\/","datePublished":"2022-01-21T22:42:19+08:00","dateModified":"2024-03-06T16:21:50+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"make和new是内置函数，不是关键字，var是关键字"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— []byte和string的不同","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go_diff-of-stringbyte\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go_diff-of-stringbyte\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":2219,"url":"https:\/\/mazikai002.github.io\/go_diff-of-stringbyte\/","datePublished":"2022-01-21T22:42:19+08:00","dateModified":"2024-03-06T16:35:10+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"make和new是内置函数，不是关键字，var是关键字"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -87,10 +87,10 @@
 <div class=container><div class=toc id=toc-auto>
 <h2 class=toc-title>目录</h2>
 <div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Go 基本语法 —— []byte和string的不同</h1><div class=post-meta>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Golang 基本语法 —— []byte和string的不同</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-01-21>2022-01-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 2219 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 5 分钟&nbsp;<span id=/go_diff-of-stringbyte/ class=leancloud_visitors data-flag-title="Go 基本语法 —— []byte和string的不同">
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 5 分钟&nbsp;<span id=/go_diff-of-stringbyte/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— []byte和string的不同">
 <i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
 </div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/go_diff-of-stringbyte/featured-image.jpg data-srcset="/go_diff-of-stringbyte/featured-image.jpg, /go_diff-of-stringbyte/featured-image.jpg 1.5x, /go_diff-of-stringbyte/featured-image.jpg 2x" data-sizes=auto alt=/go_diff-of-stringbyte/featured-image.jpg title=make和new是内置函数，不是关键字，var是关键字></div><div class="details toc" id=toc-static data-kept>
@@ -391,8 +391,8 @@ string值不可为nil，所以如果你想要通过返回nil表达额外的含�
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>更新于 2024-03-06&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/0682472f2c03d342f3f5af0a3339d5596c826b77 target=_blank title="commit by mazikai002(12685439+mazikai002@user.noreply.gitee.com) 0682472f2c03d342f3f5af0a3339d5596c826b77: feat:44 commit">
-<i class="fas fa-hashtag fa-fw" aria-hidden=true></i>0682472</a></span>
+<span>更新于 2024-03-06&nbsp;<a class=git-hash href=https://github.com/dillonzq/LoveIt/commit/8dbbad81c9ce75931b11a7b07b085c62967cb352 target=_blank title="commit by mazikai002(12685439+mazikai002@user.noreply.gitee.com) 8dbbad81c9ce75931b11a7b07b085c62967cb352: feat:45 commit">
+<i class="fas fa-hashtag fa-fw" aria-hidden=true></i>8dbbad8</a></span>
 </div></div>
 <div class=post-info-line>
 <div class=post-info-md><span>
@@ -404,13 +404,13 @@ string值不可为nil，所以如果你想要通过返回nil表达额外的含�
 </div>
 </div>
 <div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/go/>Go</a></section>
+<section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/golang/>Golang</a></section>
 <section>
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/go_diff-of-newmake/ class=prev rel=prev title="Go 基本语法 —— var、new、make区别及使用"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Go 基本语法 —— var、new、make区别及使用</a>
-<a href=/go_struct/ class=next rel=next title="Go 基本语法 —— struct可以比较吗">Go 基本语法 —— struct可以比较吗<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+<div class=post-nav><a href=/go_diff-of-newmake/ class=prev rel=prev title="Golang 基本语法 —— var、new、make区别及使用"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Golang 基本语法 —— var、new、make区别及使用</a>
+<a href=/go_struct/ class=next rel=next title="Golang 基本语法 —— struct可以比较吗">Golang 基本语法 —— struct可以比较吗<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
 </div>
 <div id=comments><div id=valine class=comment></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.

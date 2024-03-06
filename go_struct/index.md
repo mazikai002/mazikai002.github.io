@@ -1,4 +1,4 @@
-# Go 基本语法 —— struct可以比较吗
+# Golang 基本语法 —— struct可以比较吗
 
 
 >struct能不能比较？得分情况！</br>

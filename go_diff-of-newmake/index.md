@@ -1,4 +1,4 @@
-# Go 基本语法 —— var、new、make区别及使用
+# Golang 基本语法 —— var、new、make区别及使用
 
 
 >make和new是内置函数，不是关键字，var是关键字</br>
