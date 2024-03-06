@@ -2,7 +2,7 @@
 
 
 <br />
-<div align='center' ><font size='70'>" Not Day But Today "</font></div>
+<div align='center' ><font size='70'>~ Not Day But Today ~</font></div>
 <br />
 
 ![拍摄于宜昌](/images/mazikai002.png "2020年拍摄于宜昌")
@@ -21,7 +21,7 @@
 
 * 贝壳找房科技有限公司&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;平台研发组&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2021.07~至今
 * 华中科技大学.硕士&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;材料加工工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2018.07~2021.06
-* 武汉科技大学.学士&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;材料成 型及控制工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2014.07~2018.06
+* 武汉科技大学.学士&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;材料成型及控制工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2014.07~2018.06
 
 ## 专业技能
 
