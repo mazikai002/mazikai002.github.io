@@ -6,19 +6,19 @@
 <title>Golang 基本语法 —— struct可以比较吗 - Mazikai's Blog</title><meta name=Description content="struct可以比较吗"><meta property="og:title" content="Golang 基本语法 —— struct可以比较吗">
 <meta property="og:description" content="struct可以比较吗">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mazikai002.github.io/go_struct/"><meta property="og:image" content="https://mazikai002.github.io/go_struct/featured-image.jpg"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://mazikai002.github.io/go-struct/"><meta property="og:image" content="https://mazikai002.github.io/go-struct/featured-image.jpg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-03-18T18:27:25+08:00">
-<meta property="article:modified_time" content="2024-03-07T10:54:47+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-07T10:58:03+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://mazikai002.github.io/go_struct/featured-image.jpg">
+<meta name=twitter:image content="https://mazikai002.github.io/go-struct/featured-image.jpg">
 <meta name=twitter:title content="Golang 基本语法 —— struct可以比较吗">
 <meta name=twitter:description content="struct可以比较吗">
 <meta name=application-name content="LoveIt">
 <meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go_struct/><link rel=prev href=https://mazikai002.github.io/go_diff-of-stringbyte/><link rel=next href=https://mazikai002.github.io/go_context/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go-struct/><link rel=prev href=https://mazikai002.github.io/go-diff_of_stringbyte/><link rel=next href=https://mazikai002.github.io/go-context/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— struct可以比较吗","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go_struct\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go_struct\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1668,"url":"https:\/\/mazikai002.github.io\/go_struct\/","datePublished":"2022-03-18T18:27:25+08:00","dateModified":"2024-03-07T10:54:47+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"struct可以比较吗"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— struct可以比较吗","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go-struct\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go-struct\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1668,"url":"https:\/\/mazikai002.github.io\/go-struct\/","datePublished":"2022-03-18T18:27:25+08:00","dateModified":"2024-03-07T10:58:03+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"struct可以比较吗"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -41,7 +41,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="menu-item language" title=选择语言>
 <i class="fa fa-globe" aria-hidden=true></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go_struct/ selected>简体中文</option></select>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go-struct/ selected>简体中文</option></select>
 </a></div>
 </div>
 </div>
@@ -75,7 +75,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>
 <i class="fa fa-globe fa-fw" aria-hidden=true></i>
-<select class=language-select onchange="location=this.value"><option value=/go_struct/ selected>简体中文</option></select>
+<select class=language-select onchange="location=this.value"><option value=/go-struct/ selected>简体中文</option></select>
 </a></div>
 </div>
 </header><div class="search-dropdown desktop">
@@ -90,10 +90,10 @@
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Golang 基本语法 —— struct可以比较吗</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-03-18>2022-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1668 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;<span id=/go_struct/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— struct可以比较吗">
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;<span id=/go-struct/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— struct可以比较吗">
 <i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
-</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/go_struct/featured-image.jpg data-srcset="/go_struct/featured-image.jpg, /go_struct/featured-image.jpg 1.5x, /go_struct/featured-image.jpg 2x" data-sizes=auto alt=/go_struct/featured-image.jpg title=struct可以比较吗></div><div class="details toc" id=toc-static data-kept>
+</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/go-struct/featured-image.jpg data-srcset="/go-struct/featured-image.jpg, /go-struct/featured-image.jpg 1.5x, /go-struct/featured-image.jpg 2x" data-sizes=auto alt=/go-struct/featured-image.jpg title=struct可以比较吗></div><div class="details toc" id=toc-static data-kept>
 <div class="details-summary toc-title">
 <span>目录</span>
 <span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
@@ -562,8 +562,8 @@ func main() {
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/go_diff-of-stringbyte/ class=prev rel=prev title="Golang 基本语法 —— []byte和string的不同"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Golang 基本语法 —— []byte和string的不同</a>
-<a href=/go_context/ class=next rel=next title="Golang 基本语法 —— 浅谈 Context">Golang 基本语法 —— 浅谈 Context<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+<div class=post-nav><a href=/go-diff_of_stringbyte/ class=prev rel=prev title="Golang 基本语法 —— []byte和string的不同"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Golang 基本语法 —— []byte和string的不同</a>
+<a href=/go-context/ class=next rel=next title="Golang 基本语法 —— 浅谈 Context">Golang 基本语法 —— 浅谈 Context<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
 </div>
 <div id=comments><div id=gitalk class=comment></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://github.com/gitalk/gitalk></a>Gitalk</a>.
