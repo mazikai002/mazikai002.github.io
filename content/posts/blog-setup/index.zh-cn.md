@@ -1,7 +1,7 @@
 ---
 weight: 1
 title: "Blog 搭建之路"
-date: 2021-11-06T21:40:32+08:00
+date: 2022-11-06T21:40:32+08:00
 draft: false
 author: "mazikai"
 authorLink: "https://mazikai002.cn"

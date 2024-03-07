@@ -1,7 +1,7 @@
 ---
 weight: 1
 title: "Golang 基本语法 —— var、new、make区别及使用"
-date: 2021-12-17T13:28:51+08:00
+date: 2022-12-17T13:28:51+08:00
 draft: false
 author: "mazikai"
 authorLink: "https://mazikai002.cn"

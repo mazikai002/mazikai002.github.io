@@ -1,7 +1,7 @@
 ---
 weight: 1
 title: "Golang 基本语法 —— []byte和string的不同"
-date: 2022-01-21T22:42:19+08:00
+date: 2023-01-21T22:42:19+08:00
 draft: false
 author: "mazikai"
 authorLink: "https://mazikai002.cn"

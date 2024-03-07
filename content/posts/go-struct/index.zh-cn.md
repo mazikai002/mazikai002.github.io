@@ -1,7 +1,7 @@
 ---
 weight: 1
 title: "Golang 基本语法 —— struct可以比较吗"
-date: 2022-03-18T18:27:25+08:00
+date: 2023-03-18T18:27:25+08:00
 draft: false
 author: "mazikai"
 authorLink: "https://mazikai002.cn"
