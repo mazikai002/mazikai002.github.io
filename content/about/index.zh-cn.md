@@ -40,5 +40,5 @@ math:
 - **语言框架** : 掌握 Gin 、GORM 等主流框架
 - **数据库** : 掌握 MySQL 数据库及常见优化手段(索引、SQL 优化、读写分离、分库分表)、Redis 数据库(缓存、分布式锁)
 - **分布式** : 掌握 Prometheus 指标监控、Consul 服务网络；了解 SkyWalking 链路追踪、Kafka 消息队列、Elasticsearch 搜索引擎、ELK 日志检索、OpenTelemetry 可观测性框架
-- **云原生** : 了解 Kubernetes 容器编排工具、APISIX 云网关
+- **云原生** : 了解 Kubernetes 容器编排平台、APISIX 云原生网关
 - **其他** : 掌握 Linux 及常用命令(有开发部署项目经验)、 Git、Docker、Markdown
