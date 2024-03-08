@@ -6,19 +6,19 @@
 <title>Golang 基本语法 —— 内存管理 - Mazikai's Blog</title><meta name=Description content="内存管理"><meta property="og:title" content="Golang 基本语法 —— 内存管理">
 <meta property="og:description" content="内存管理">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mazikai002.github.io/go-memory-manage/"><meta property="og:image" content="https://mazikai002.github.io/go-memory-manage/featured-image.jpg"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://mazikai002.github.io/go-memory_manage/"><meta property="og:image" content="https://mazikai002.github.io/go-memory_manage/featured-image.jpg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2023-10-05T17:32:13+08:00">
-<meta property="article:modified_time" content="2024-03-08T17:32:13+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-08T18:03:43+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://mazikai002.github.io/go-memory-manage/featured-image.jpg">
+<meta name=twitter:image content="https://mazikai002.github.io/go-memory_manage/featured-image.jpg">
 <meta name=twitter:title content="Golang 基本语法 —— 内存管理">
 <meta name=twitter:description content="内存管理">
 <meta name=application-name content="LoveIt">
 <meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go-memory-manage/><link rel=prev href=https://mazikai002.github.io/mysql-index_failure/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go-memory_manage/><link rel=prev href=https://mazikai002.github.io/go-escape_analyze/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— 内存管理","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go-memory-manage\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go-memory-manage\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1091,"url":"https:\/\/mazikai002.github.io\/go-memory-manage\/","datePublished":"2023-10-05T17:32:13+08:00","dateModified":"2024-03-08T17:32:13+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"内存管理"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— 内存管理","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go-memory_manage\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go-memory_manage\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1091,"url":"https:\/\/mazikai002.github.io\/go-memory_manage\/","datePublished":"2023-10-05T17:32:13+08:00","dateModified":"2024-03-08T18:03:43+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"内存管理"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -41,7 +41,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class="menu-item language" title=选择语言>
 <i class="fa fa-globe" aria-hidden=true></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go-memory-manage/ selected>简体中文</option></select>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/go-memory_manage/ selected>简体中文</option></select>
 </a></div>
 </div>
 </div>
@@ -75,7 +75,7 @@
 <i class="fas fa-adjust fa-fw" aria-hidden=true></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>
 <i class="fa fa-globe fa-fw" aria-hidden=true></i>
-<select class=language-select onchange="location=this.value"><option value=/go-memory-manage/ selected>简体中文</option></select>
+<select class=language-select onchange="location=this.value"><option value=/go-memory_manage/ selected>简体中文</option></select>
 </a></div>
 </div>
 </header><div class="search-dropdown desktop">
@@ -90,10 +90,10 @@
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Golang 基本语法 —— 内存管理</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2023-10-05>2023-10-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1091 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 3 分钟&nbsp;<span id=/go-memory-manage/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— 内存管理">
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 3 分钟&nbsp;<span id=/go-memory_manage/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— 内存管理">
 <i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
-</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/go-memory-manage/featured-image.jpg data-srcset="/go-memory-manage/featured-image.jpg, /go-memory-manage/featured-image.jpg 1.5x, /go-memory-manage/featured-image.jpg 2x" data-sizes=auto alt=/go-memory-manage/featured-image.jpg title=内存管理></div><div class="details toc" id=toc-static data-kept>
+</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/go-memory_manage/featured-image.jpg data-srcset="/go-memory_manage/featured-image.jpg, /go-memory_manage/featured-image.jpg 1.5x, /go-memory_manage/featured-image.jpg 2x" data-sizes=auto alt=/go-memory_manage/featured-image.jpg title=内存管理></div><div class="details toc" id=toc-static data-kept>
 <div class="details-summary toc-title">
 <span>目录</span>
 <span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
@@ -135,7 +135,7 @@
 <li>一次性或者提前分配多级内存模块(减少内存分配时锁的使用和调用操作系统分配内存的开销)</li>
 <li>多尺度内存单元(减少内存分配产生的碎片)</li>
 </ol>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=/go-memory-manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png data-srcset="/go-memory-manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png, /go-memory-manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png 1.5x, /go-memory-manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png 2x" data-sizes=auto alt=/go-memory-manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png title=Go内存管理 width=1940 height=909></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=/go-memory_manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png data-srcset="/go-memory_manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png, /go-memory_manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png 1.5x, /go-memory_manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png 2x" data-sizes=auto alt=/go-memory_manage/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png title=Go内存管理 width=1940 height=909></p>
 <p>mspan是堆上内存管理的基本单元，由一连串的页构成(8KB)。Golang根据内存大小将mspan分成67个等级，每个mspan被切分成了很多小对象，用于不同尺度的对象分配。</p>
 <p>每个线程有一个独立的堆内存mcache，在mcache上申请内存不需要加锁，每个mache有67种尺度内存单元，每个尺度的内存又由mspan构成，分别存储指针类型和非指针类型。当程序在堆上创建对象时，分配器会根据对象的大小(小于32KB)和类型(是否为指针)从67*2中mspan中分配内存。</p>
 <p>如果mcache内存不足，会从<strong>所有线程共享的缓存mcentral</strong>中申请内存。一共有67<em>2中mcentral，mcache中空间不足的mspan会从对应的mcentral申请内存，申请内存时需要加锁，但是加锁的概率变成了1/(67</em>2)，申请效率很高。为了进一步提升内存分配效率，每一个mcentral由2个链表构成，一个存放已经分配给mcache的mspan，一个存放未被占用或者已经被mcache释放的mspan。</p>
@@ -160,7 +160,7 @@
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/mysql-index_failure/ class=prev rel=prev title="MySQL 优化手段 —— 索引失效"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>MySQL 优化手段 —— 索引失效</a></div>
+<div class=post-nav><a href=/go-escape_analyze/ class=prev rel=prev title="Golang 底层原理 —— 逃逸分析"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Golang 底层原理 —— 逃逸分析</a></div>
 </div>
 <div id=comments><div id=gitalk class=comment></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://github.com/gitalk/gitalk></a>Gitalk</a>.
