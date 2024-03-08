@@ -23,7 +23,7 @@ math:
 > 
 > My name is **Mazikai** .
 >
-> Major in **Observability** .
+> Major in **Observability & DevOps** .
 > 
 > If you have any questions or idea, Communications are welcome!&emsp;[**Please Mail**](http://mazikai002@gmail.com)
 
