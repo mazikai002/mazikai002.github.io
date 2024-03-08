@@ -1,7 +1,7 @@
 ---
 weight: 1
 title: "Golang 底层原理 —— 逃逸分析"
-date: 2023-10-05T17:32:13+08:00
+date: 2023-12-25T19:51:23+08:00
 draft: false
 author: "mazikai"
 authorLink: "https://mazikai002.cn"
