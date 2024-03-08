@@ -1,6 +1,6 @@
 ---
 weight: 1
-title: "Golang 基本语法 —— 内存管理"
+title: "Golang 底层原理 —— 内存管理"
 date: 2023-10-05T17:32:13+08:00
 draft: false
 author: "mazikai"
