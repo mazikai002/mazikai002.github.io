@@ -16,7 +16,10 @@ tags: ["golang"]
 lightgallery: true
 ---
 
->make和new是内置函数，不是关键字，var是关键字</br>
+>make和new是内置函数，不是关键字，var是关键字。</br>
+>make 只能用来分配及初始化类型为 slice、map、chan 的数据，而 new 可以分配任意类型的数据。</br>
+>new 分配返回的是指针，即类型 *Type。make 返回引用，即 Type。</br>
+>new 分配的空间被清零。make 分配空间后，会进行初始化。</br>
 
 <!--more-->
 
