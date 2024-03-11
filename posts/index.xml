@@ -13,7 +13,10 @@
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— []byte和string的不同</title><link>https://mazikai002.github.io/go-diff_of_stringbyte/</link><pubDate>Sat, 21 Jan 2023 22:42:19 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-diff_of_stringbyte/</guid><description><![CDATA[<blockquote>
 <p>[]byte和string的不同</br></p>
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— var、new、make区别及使用</title><link>https://mazikai002.github.io/go-diff_of_newmake/</link><pubDate>Sat, 17 Dec 2022 13:28:51 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-diff_of_newmake/</guid><description><![CDATA[<blockquote>
-<p>make和new是内置函数，不是关键字，var是关键字</br></p>
+<p>make和new是内置函数，不是关键字，var是关键字。</br>
+make 只能用来分配及初始化类型为 slice、map、chan 的数据，而 new 可以分配任意类型的数据。</br>
+new 分配返回的是指针，即类型 *Type。make 返回引用，即 Type。</br>
+new 分配的空间被清零。make 分配空间后，会进行初始化。</br></p>
 </blockquote>]]></description></item><item><title>Blog 搭建之路</title><link>https://mazikai002.github.io/blog-setup/</link><pubDate>Sun, 06 Nov 2022 21:40:32 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/blog-setup/</guid><description><![CDATA[<blockquote>
 <p>博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流。</br>
 这是我的第一篇博客，记录我是如何搭建这个网站的！希望对您也有帮助~</p>

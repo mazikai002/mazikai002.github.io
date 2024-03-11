@@ -153,7 +153,10 @@
 </div><h1 class=single-title itemprop="name headline">
 <a href=/go-diff_of_newmake/>Golang 基本语法 —— var、new、make区别及使用</a>
 </h1><div class=post-meta><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span>&nbsp;<span class=post-publish>发布于 <time datetime=2022-12-17>2022-12-17</time></span></div><div class=content><blockquote>
-<p>make和new是内置函数，不是关键字，var是关键字</br></p>
+<p>make和new是内置函数，不是关键字，var是关键字。</br>
+make 只能用来分配及初始化类型为 slice、map、chan 的数据，而 new 可以分配任意类型的数据。</br>
+new 分配返回的是指针，即类型 *Type。make 返回引用，即 Type。</br>
+new 分配的空间被清零。make 分配空间后，会进行初始化。</br></p>
 </blockquote></div><div class=post-footer>
 <a href=/go-diff_of_newmake/>阅读全文</a><div class=post-tags>
 <i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/golang/>Golang</a></div></div>
