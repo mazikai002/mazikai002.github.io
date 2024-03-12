@@ -4,6 +4,10 @@
 <p>作者当前认知的Golang内存管理机制</br></p>
 </blockquote>]]></description></item><item><title>MySQL 优化手段 —— 索引失效</title><link>https://mazikai002.github.io/mysql-index_failure/</link><pubDate>Thu, 17 Aug 2023 15:43:57 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-index_failure/</guid><description><![CDATA[<blockquote>
 <p>聊聊索引失效</br></p>
+</blockquote>]]></description></item><item><title>计算机基础 —— 浏览器访问网页过程及后续</title><link>https://mazikai002.github.io/whole_process_of_accessing_web_pages/</link><pubDate>Thu, 13 Jul 2023 11:27:33 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/whole_process_of_accessing_web_pages/</guid><description><![CDATA[<blockquote>
+<p>在浏览器地址栏输入URL，按下回车后究竟发生了什么？</br>
+本文还展示了研发人员是如何构建发布用户获取到的Web资源？</br>
+该部分为作者梳理的精简内容，希望对您有帮助 ~ </br></p>
 </blockquote>]]></description></item><item><title>MySQL 优化手段 —— 分库分表</title><link>https://mazikai002.github.io/mysql-separate_librarytable/</link><pubDate>Fri, 30 Jun 2023 11:25:22 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-separate_librarytable/</guid><description><![CDATA[<blockquote>
 <p>分库分表</br></p>
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— 浅谈 Context</title><link>https://mazikai002.github.io/go-context/</link><pubDate>Mon, 22 May 2023 19:53:39 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-context/</guid><description><![CDATA[<blockquote>
@@ -11,10 +15,6 @@
 </blockquote>]]></description></item><item><title>MySQL 重要日志 —— binlog、redo log、undo log</title><link>https://mazikai002.github.io/mysql-logs/</link><pubDate>Fri, 21 Apr 2023 14:47:36 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-logs/</guid><description><![CDATA[<blockquote>
 <p>MySQL日志主要包括错误日志、查询日志、慢查询日志、回滚日志、重做日志、归档日志几大类。</br>
 本文主要聊一聊MySQL的重要日志，binlog 、redo log 、undo log ！</br>
-该部分为作者梳理的精简内容，希望对您有帮助 ~ </br></p>
-</blockquote>]]></description></item><item><title>计算机基础 —— 浏览器访问网页过程及后续</title><link>https://mazikai002.github.io/whole_process_of_accessing_web_pages/</link><pubDate>Fri, 21 Apr 2023 14:47:36 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/whole_process_of_accessing_web_pages/</guid><description><![CDATA[<blockquote>
-<p>在浏览器地址栏输入URL，按下回车后究竟发生了什么？</br>
-本文还展示了研发人员是如何构建发布用户获取到的Web资源？</br>
 该部分为作者梳理的精简内容，希望对您有帮助 ~ </br></p>
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— struct可以比较吗</title><link>https://mazikai002.github.io/go-struct/</link><pubDate>Sat, 18 Mar 2023 18:27:25 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-struct/</guid><description><![CDATA[<blockquote>
 <p>struct能不能比较？得分情况！</br></p>
