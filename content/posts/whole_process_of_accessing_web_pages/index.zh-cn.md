@@ -9,7 +9,7 @@ description: "浏览器访问网页的全过程"
 images: []
 resources:
 - name: "featured-image"
-  src: "浏览器访问网页过程.png"
+  src: "web_logo.png"
 
 tags: ["Fundamentals_Of_Computer"]
 
