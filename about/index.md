@@ -9,11 +9,11 @@
 
 ## 个人简介
 >
-> Hello , 
+> Hi , **Buddy** .
 > 
 > My name is **Mazikai** .
 >
-> Major in **Observability & DevOps** .
+> Major in **DevOps & Observability** .
 > 
 > If you have any questions or idea, Communications are welcome!&emsp;[**Please Mail**](http://mazikai002@gmail.com)
 
