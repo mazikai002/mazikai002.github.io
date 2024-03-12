@@ -145,3 +145,5 @@ https://huweicai.com/</br>
 https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-make-and-new/</br>
 https://blog.wu-boy.com/2021/06/what-is-different-between-new-and-make-in-golang/</br>
 https://fivezh.github.io/2020/03/15/golang-new-make/</br>
+https://zhuanlan.zhihu.com/p/486998884</br>
+http://www.codingbygolang.com/make-or-new/#%E5%87%BD%E6%95%B0-new-%E7%AD%BE%E5%90%8D</br>
