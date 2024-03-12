@@ -8,7 +8,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mazikai002.github.io/go-diff_of_newmake/"><meta property="og:image" content="https://mazikai002.github.io/go-diff_of_newmake/featured-image.jpg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-12-17T13:28:51+08:00">
-<meta property="article:modified_time" content="2024-03-11T12:16:17+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-12T16:59:12+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/go-diff_of_newmake/featured-image.jpg">
 <meta name=twitter:title content="Golang 基本语法 —— var、new、make区别及使用">
@@ -18,7 +18,7 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go-diff_of_newmake/><link rel=prev href=https://mazikai002.github.io/blog-setup/><link rel=next href=https://mazikai002.github.io/go-diff_of_stringbyte/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— var、new、make区别及使用","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go-diff_of_newmake\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go-diff_of_newmake\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1615,"url":"https:\/\/mazikai002.github.io\/go-diff_of_newmake\/","datePublished":"2022-12-17T13:28:51+08:00","dateModified":"2024-03-11T12:16:17+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"make和new是内置函数，不是关键字，var是关键字"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 基本语法 —— var、new、make区别及使用","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go-diff_of_newmake\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go-diff_of_newmake\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1617,"url":"https:\/\/mazikai002.github.io\/go-diff_of_newmake\/","datePublished":"2022-12-17T13:28:51+08:00","dateModified":"2024-03-12T16:59:12+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"make和new是内置函数，不是关键字，var是关键字"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -89,7 +89,7 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Golang 基本语法 —— var、new、make区别及使用</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-12-17>2022-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1615 字&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2022-12-17>2022-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1617 字&nbsp;
 <i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;<span id=/go-diff_of_newmake/ class=leancloud_visitors data-flag-title="Golang 基本语法 —— var、new、make区别及使用">
 <i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
@@ -273,7 +273,9 @@ fmt.Printf(&#34;%#v&#34;, c) //(chan int)(0xc000062060)
 <p><a href=https://huweicai.com/ target=_blank rel="noopener noreffer">https://huweicai.com/</a></br>
 <a href=https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-make-and-new/ target=_blank rel="noopener noreffer">https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-make-and-new/</a></br>
 <a href=https://blog.wu-boy.com/2021/06/what-is-different-between-new-and-make-in-golang/ target=_blank rel="noopener noreffer">https://blog.wu-boy.com/2021/06/what-is-different-between-new-and-make-in-golang/</a></br>
-<a href=https://fivezh.github.io/2020/03/15/golang-new-make/ target=_blank rel="noopener noreffer">https://fivezh.github.io/2020/03/15/golang-new-make/</a></br></p></div><div class=post-footer id=post-footer>
+<a href=https://fivezh.github.io/2020/03/15/golang-new-make/ target=_blank rel="noopener noreffer">https://fivezh.github.io/2020/03/15/golang-new-make/</a></br>
+<a href=https://zhuanlan.zhihu.com/p/486998884 target=_blank rel="noopener noreffer">https://zhuanlan.zhihu.com/p/486998884</a></br>
+<a href=http://www.codingbygolang.com/make-or-new/#%E5%87%BD%E6%95%B0-new-%E7%AD%BE%E5%90%8D target=_blank rel="noopener noreffer">http://www.codingbygolang.com/make-or-new/#%E5%87%BD%E6%95%B0-new-%E7%AD%BE%E5%90%8D</a></br></p></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>

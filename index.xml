@@ -4,6 +4,9 @@
 <p>作者当前认知的Golang内存管理机制</br></p>
 </blockquote>]]></description></item><item><title>MySQL 优化手段 —— 索引失效</title><link>https://mazikai002.github.io/mysql-index_failure/</link><pubDate>Thu, 17 Aug 2023 15:43:57 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-index_failure/</guid><description><![CDATA[<blockquote>
 <p>聊聊索引失效</br></p>
+</blockquote>]]></description></item><item><title>MySQL 相关日志 —— Binlog</title><link>https://mazikai002.github.io/mysql-binlog/</link><pubDate>Thu, 17 Aug 2023 15:43:57 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-binlog/</guid><description><![CDATA[<blockquote>
+<p>Binlog主要用于数据备份和主从复制。</br>
+以下为一些精简内容梳理，希望对您有帮助 ~ </br></p>
 </blockquote>]]></description></item><item><title>MySQL 优化手段 —— 分库分表</title><link>https://mazikai002.github.io/mysql-separate_librarytable/</link><pubDate>Fri, 30 Jun 2023 11:25:22 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-separate_librarytable/</guid><description><![CDATA[<blockquote>
 <p>分库分表</br></p>
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— 浅谈 Context</title><link>https://mazikai002.github.io/go-context/</link><pubDate>Mon, 22 May 2023 19:53:39 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-context/</guid><description><![CDATA[<blockquote>
