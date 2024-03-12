@@ -1,20 +1,21 @@
 # MySQL 重要日志 —— binlog、redo log、undo log
 
 
->MySQL日志主要包括错误日志、查询日志、慢查询日志、回滚日志、重做日志、归档日志几大类。
->本文主要聊一聊MySQL的重要日志binlog（归档日志） 、redo log（重做日志） 、undo log（回滚日志）！该部分为作者梳理的精简内容，希望对您有帮助 ~ </br>
+>MySQL日志主要包括错误日志、查询日志、慢查询日志、回滚日志、重做日志、归档日志几大类。</br>
+>本文主要聊一聊MySQL的重要日志，binlog 、redo log 、undo log ！</br>
+>该部分为作者梳理的精简内容，希望对您有帮助 ~ </br>
 
 <!--more-->
 
 ![MySQL_重要日志](mysql相关日志.png)
 
-# undo log
+# undo log（回滚日志）
 是Innodb存储引擎层生成的日志，实现了事务的原子性，主要用于事务回滚和MVCC。
 
-# redo log
+# redo log（重做日志）
 redo log是是Innodb存储引擎层生成的日志，记录了某个数据页做了什么修改，比如对X表空间中的Y数据页Z偏移量的地方做了A更新，每当执行一个事务就会产生一条或多条物理日志。它实现了事务的持久性，主要用于掉电等故障恢复和提高MySQL写入性能(将写操作从随机写变成顺序写)。
 
-# binlog
+# binlog（归档日志）
 binlog是Server层生成的逻辑日志，记录内容是原始操作语句，主要用于数据备份和主从复制。
 
 ## 记录格式(可以通过 binlog-format 指定)
