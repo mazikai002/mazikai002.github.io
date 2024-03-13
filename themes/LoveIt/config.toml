@@ -87,26 +87,26 @@
   [params.section]
     # special amount of posts in each section page
     # section 页面每页显示文章数量
-    paginate = 20
+    paginate = 8
     # date format (month and day)
     # 日期格式 (月和日)
     dateFormat = "01-02"
     # amount of RSS pages
     # RSS 文章数目
-    rss = 10
+    rss = 8
 
   # List (category or tag) page config
   # List (目录或标签) 页面配置
   [params.list]
     # special amount of posts in each list page
     # list 页面每页显示文章数量
-    paginate = 20
+    paginate = 8
     # date format (month and day)
     # 日期格式 (月和日)
     dateFormat = "01-02"
     # amount of RSS pages
     # RSS 文章数目
-    rss = 10
+    rss = 8
 
   # App icon config
   # 应用图标配置
@@ -165,7 +165,7 @@
   [params.home]
     # amount of RSS pages
     # RSS 文章数目
-    rss = 10
+    rss = 8
     # Home page profile
     # 主页个人信息
     [params.home.profile]
