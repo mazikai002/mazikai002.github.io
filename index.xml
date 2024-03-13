@@ -3,8 +3,8 @@
 </blockquote>]]></description></item><item><title>Golang 底层原理 —— 内存管理</title><link>https://mazikai002.github.io/go-memory_manage/</link><pubDate>Thu, 05 Oct 2023 17:32:13 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-memory_manage/</guid><description><![CDATA[<blockquote>
 <p>作者当前认知的Golang内存管理机制</br></p>
 </blockquote>]]></description></item><item><title>Redis 缓存异常 —— 缓存雪崩、击穿、穿透</title><link>https://mazikai002.github.io/redis-cache_exception/</link><pubDate>Fri, 08 Sep 2023 22:03:13 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/redis-cache_exception/</guid><description><![CDATA[<blockquote>
-<p>引入缓存层，会有缓存异常的三个常见问题，分别是缓存雪崩、缓存击穿、缓存穿透。 </br>
-本文涉及缓存雪崩、击穿、穿透的定义、原因以及应对方案。 </br>
+<p>引入缓存层，会有缓存异常的三个常见问题，分别是缓存雪崩、击穿、穿透。 </br>
+本文总结了这三个问题的定义、原因以及应对方案。 </br>
 请看如下表格，希望对您有帮助 ~  </br></p>
 </blockquote>]]></description></item><item><title>MySQL 优化手段 —— 索引失效</title><link>https://mazikai002.github.io/mysql-index_failure/</link><pubDate>Thu, 17 Aug 2023 15:43:57 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-index_failure/</guid><description><![CDATA[<blockquote>
 <p>聊聊索引失效</br></p>
