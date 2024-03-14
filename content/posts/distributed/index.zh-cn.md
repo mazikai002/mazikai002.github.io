@@ -45,11 +45,17 @@ lightgallery: true
 | 地域故障   | 战争、强自然灾害等。比如河南水灾        | 极小 | 极大 |
 
 ## 三、同城多活
+### 同城双活
+同城双活架构图如下
+![同城双活](同城双活.png)
+
+### 同城三活
+![同城三活](同城三活.png)
 
 
 ## 四、两地三中心(GDPS)
 ### 两地
-两地 ——— 同城、异地
+两地 ——— 同城、异地 
 ### 三中心
 三中心 ——— 生产中心、同城容灾中心、异地容灾中心
 
@@ -64,6 +70,7 @@ lightgallery: true
 ## 九、数据库架构
 
 # 参考
+https://cloud.tencent.com/developer/article/1696857</br>
 https://blog.51cto.com/u_15233911/2872723</br>
 http://timd.cn/distributed-system-disaster-recovery-architecture/</br>
 https://www.bilibili.com/video/BV18v411c7FX/?spm_id_from=333.337.search-card.all.click&vd_source=984bb0162787242633addc56b07edfb8</br>
