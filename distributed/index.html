@@ -8,7 +8,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mazikai002.github.io/distributed/"><meta property="og:image" content="https://mazikai002.github.io/distributed/distributed_logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2024-01-02T12:22:53+08:00">
-<meta property="article:modified_time" content="2024-03-14T20:40:45+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-14T20:47:42+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/distributed/distributed_logo.png">
 <meta name=twitter:title content="分布式系统 —— 容灾架构">
@@ -18,7 +18,7 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/distributed/><link rel=prev href=https://mazikai002.github.io/go-escape_analyze/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"分布式系统 —— 容灾架构","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/distributed\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/distributed\/distributed_logo.png","width":800,"height":565}],"genre":"posts","keywords":"Distributed","wordcount":658,"url":"https:\/\/mazikai002.github.io\/distributed\/","datePublished":"2024-01-02T12:22:53+08:00","dateModified":"2024-03-14T20:40:45+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"容灾架构"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"分布式系统 —— 容灾架构","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/distributed\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/distributed\/distributed_logo.png","width":800,"height":565}],"genre":"posts","keywords":"Distributed","wordcount":677,"url":"https:\/\/mazikai002.github.io\/distributed\/","datePublished":"2024-01-02T12:22:53+08:00","dateModified":"2024-03-14T20:47:42+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"容灾架构"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -83,7 +83,7 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">分布式系统 —— 容灾架构</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-01-02>2024-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 658 字&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-01-02>2024-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 677 字&nbsp;
 <i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;
 <span id=busuanzi_container_value_page_pv><i class="far fa-eye fa-fw"></i>
 <span id=busuanzi_value_page_pv></span>&nbsp;次阅读</span>
@@ -129,11 +129,11 @@
 <tbody>
 <tr>
 <td>冷备</td>
-<td>定时将主数据中心的数据库文件备份到其他数据中心。冷备不提供实时服务。当丢失数据时，可以通过冷备回复数据，以保证数据安全</td>
+<td>(需要停机)通过停止数据库对外服务的能力，定时将主数据中心的数据库文件备份到其他数据中心。</br>当丢失数据时，可以通过冷备回复数据，以保证数据安全。</td>
 </tr>
 <tr>
 <td>双机热备</td>
-<td>通过数据库主从负载或binlog订阅等技术对主数据中心进行实时备份。热备提供实时服务，当主数据中心不可用时，热备可以自动接管业务，保证业务不间断运行，用户端对主备切换无感知</td>
+<td>(无需停机)通过数据库主从负载或binlog订阅等技术对主数据中心进行实时备份。热备提供实时服务，当主数据中心不可用时，热备可以自动接管业务，保证业务不间断运行，用户端对主备切换无感知</td>
 </tr>
 <tr>
 <td>同城多活</td>
@@ -164,7 +164,7 @@
 </tr>
 <tr>
 <td>机房故障</td>
-<td>机房网络故障、店里故障、制冷系统故障、自然灾害等。比如塘沽爆炸事件</td>
+<td>机房网络故障、店里故障、制冷系统故障、自然灾害等。</br>比如塘沽爆炸事件</td>
 <td>小</td>
 <td>大</td>
 </tr>
@@ -184,7 +184,8 @@
 <h2 id=八单元化>八、单元化</h2>
 <h2 id=九数据库架构>九、数据库架构</h2>
 <h1 id=参考>参考</h1>
-<p><a href=http://timd.cn/distributed-system-disaster-recovery-architecture/ target=_blank rel="noopener noreffer">http://timd.cn/distributed-system-disaster-recovery-architecture/</a></br>
+<p><a href=https://blog.51cto.com/u_15233911/2872723 target=_blank rel="noopener noreffer">https://blog.51cto.com/u_15233911/2872723</a></br>
+<a href=http://timd.cn/distributed-system-disaster-recovery-architecture/ target=_blank rel="noopener noreffer">http://timd.cn/distributed-system-disaster-recovery-architecture/</a></br>
 <a href="https://www.bilibili.com/video/BV18v411c7FX/?spm_id_from=333.337.search-card.all.click&vd_source=984bb0162787242633addc56b07edfb8" target=_blank rel="noopener noreffer">https://www.bilibili.com/video/BV18v411c7FX/?spm_id_from=333.337.search-card.all.click&vd_source=984bb0162787242633addc56b07edfb8</a></br></p></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
