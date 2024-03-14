@@ -1,0 +1,8 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Redis - 标签 - Mazikai's Blog</title><link>https://mazikai002.github.io/tags/redis/</link><description>Redis - 标签 - Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://mazikai002.github.io/tags/redis/" rel="self" type="application/rss+xml"/><item><title>Redis 缓存异常 —— 缓存雪崩、击穿、穿透</title><link>https://mazikai002.github.io/redis-cache_exception/</link><pubDate>Fri, 08 Sep 2023 22:03:13 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/redis-cache_exception/</guid><description><![CDATA[<blockquote>
+<p>引入缓存层，会有缓存异常的三个常见问题，分别是缓存雪崩、击穿、穿透。 </br>
+本文总结了这三个问题的定义、原因以及应对方案。 </br>
+请看如下表格，希望对您有帮助 ~  </br></p>
+</blockquote>]]></description></item><item><title>Redis 底层知识 —— 过期删除 &amp; 内存淘汰</title><link>https://mazikai002.github.io/redis-expirationstrategymemoryobsolescence/</link><pubDate>Sat, 11 Feb 2023 12:40:26 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/redis-expirationstrategymemoryobsolescence/</guid><description><![CDATA[<blockquote>
+<p>Redis重要的使用场景有两个 : 缓存和分布式锁。 </br>
+这两个使用方式或多或少都涉及到两个底层知识 : 过期删除 &amp; 内存淘汰 </br></p>
+</blockquote>]]></description></item></channel></rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Golang - 标签 - Mazikai's Blog</title><link>https://mazikai002.github.io/tags/golang/</link><description>Golang - 标签 - Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://mazikai002.github.io/tags/golang/" rel="self" type="application/rss+xml"/><item><title>Golang 底层原理 —— 逃逸分析</title><link>https://mazikai002.github.io/go-escape_analyze/</link><pubDate>Mon, 25 Dec 2023 19:51:23 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-escape_analyze/</guid><description><![CDATA[<blockquote>
+<p>逃逸分析 —— 让Golang程序员专注高效工作的挖井人！</br></p>
+</blockquote>]]></description></item><item><title>Golang 底层原理 —— 内存管理</title><link>https://mazikai002.github.io/go-memory_manage/</link><pubDate>Thu, 05 Oct 2023 17:32:13 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-memory_manage/</guid><description><![CDATA[<blockquote>
+<p>作者当前认知的Golang内存管理机制</br></p>
+</blockquote>]]></description></item><item><title>Golang 基本语法 —— 浅谈 Context</title><link>https://mazikai002.github.io/go-context/</link><pubDate>Mon, 22 May 2023 19:53:39 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-context/</guid><description><![CDATA[<blockquote>
+<p>context为Go中的一个标准库, 专门用来处理多个协程之间的控制问题, 比如协程的取消, 协程运行截止时间, 协程运行的超时时间, 协程之间的数据传输等.</br></p>
+</blockquote>]]></description></item><item><title>Golang 基本语法 —— struct可以比较吗</title><link>https://mazikai002.github.io/go-struct/</link><pubDate>Sat, 18 Mar 2023 18:27:25 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-struct/</guid><description><![CDATA[<blockquote>
+<p>struct能不能比较？得分情况！</br></p>
+</blockquote>]]></description></item><item><title>Golang 基本语法 —— []byte和string的不同</title><link>https://mazikai002.github.io/go-diff_of_stringbyte/</link><pubDate>Sat, 21 Jan 2023 22:42:19 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-diff_of_stringbyte/</guid><description><![CDATA[<blockquote>
+<p>[]byte和string的不同</br></p>
+</blockquote>]]></description></item><item><title>Golang 基本语法 —— var、new、make区别及使用</title><link>https://mazikai002.github.io/go-diff_of_newmake/</link><pubDate>Sat, 17 Dec 2022 13:28:51 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-diff_of_newmake/</guid><description><![CDATA[<blockquote>
+<p>make和new是内置函数，不是关键字，var是关键字。</br>
+make 只能用来分配及初始化类型为 slice、map、chan 的数据，而 new 可以分配任意类型的数据。</br>
+new 分配返回的是指针，即类型 *Type。make 返回引用，即 Type。</br>
+new 分配的空间被清零。make 分配空间后，会进行初始化。</br></p>
+</blockquote>]]></description></item></channel></rss>

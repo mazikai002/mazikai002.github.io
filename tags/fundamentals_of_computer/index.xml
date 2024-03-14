@@ -1,0 +1,5 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Fundamentals_Of_Computer - 标签 - Mazikai's Blog</title><link>https://mazikai002.github.io/tags/fundamentals_of_computer/</link><description>Fundamentals_Of_Computer - 标签 - Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://mazikai002.github.io/tags/fundamentals_of_computer/" rel="self" type="application/rss+xml"/><item><title>计算机基础 —— 浏览器访问网页过程及后续</title><link>https://mazikai002.github.io/whole_process_of_accessing_web_pages/</link><pubDate>Thu, 13 Jul 2023 11:27:33 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/whole_process_of_accessing_web_pages/</guid><description><![CDATA[<blockquote>
+<p>在浏览器地址栏输入URL，按下回车后究竟发生了什么？</br>
+本文还展示了研发人员是如何构建发布用户获取到的Web资源？</br>
+该部分为作者梳理的精简内容，希望对您有帮助 ~ </br></p>
+</blockquote>]]></description></item></channel></rss>
