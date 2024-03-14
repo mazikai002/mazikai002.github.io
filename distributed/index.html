@@ -8,7 +8,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mazikai002.github.io/distributed/"><meta property="og:image" content="https://mazikai002.github.io/distributed/distributed_logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2024-01-02T12:22:53+08:00">
-<meta property="article:modified_time" content="2024-03-14T18:09:57+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-14T19:56:43+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/distributed/distributed_logo.png">
 <meta name=twitter:title content="分布式系统 —— 容灾架构设计">
@@ -18,7 +18,7 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/distributed/><link rel=prev href=https://mazikai002.github.io/go-escape_analyze/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"分布式系统 —— 容灾架构设计","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/distributed\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/distributed\/distributed_logo.png","width":800,"height":565}],"genre":"posts","keywords":"Distributed","wordcount":2423,"url":"https:\/\/mazikai002.github.io\/distributed\/","datePublished":"2024-01-02T12:22:53+08:00","dateModified":"2024-03-14T18:09:57+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"容灾架构设计"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"分布式系统 —— 容灾架构设计","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/distributed\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/distributed\/distributed_logo.png","width":800,"height":565}],"genre":"posts","keywords":"Distributed","wordcount":637,"url":"https:\/\/mazikai002.github.io\/distributed\/","datePublished":"2024-01-02T12:22:53+08:00","dateModified":"2024-03-14T19:56:43+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"容灾架构设计"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -83,8 +83,8 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">分布式系统 —— 容灾架构设计</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-01-02>2024-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 2423 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 5 分钟&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-01-02>2024-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 637 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 2 分钟&nbsp;
 <span id=busuanzi_container_value_page_pv><i class="far fa-eye fa-fw"></i>
 <span id=busuanzi_value_page_pv></span>&nbsp;次阅读</span>
 </div>
@@ -95,25 +95,15 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#第一步浏览器输入域名>第一步：浏览器输入域名</a></li>
-<li><a href=#第二步浏览器查找域名的ip地址>第二步：浏览器查找域名的IP地址</a></li>
-<li><a href=#第三步-浏览器与目标服务器建立tcp连接>第三步 ：浏览器与目标服务器建立TCP连接</a></li>
-<li><a href=#第四步浏览器通过http协议发送请求>第四步：浏览器通过http协议发送请求</a></li>
-<li><a href=#第五步某些服务会做永久重定向响应>第五步：某些服务会做永久重定向响应</a></li>
-<li><a href=#第六步浏览器跟踪重定向地址>第六步：浏览器跟踪重定向地址</a></li>
-<li><a href=#第七步服务器处理请求>第七步：服务器处理请求</a></li>
-<li><a href=#第八步服务器发出一个html响应>第八步：服务器发出一个HTML响应</a></li>
-<li><a href=#第九步释放tcp连接>第九步：释放TCP连接</a></li>
-<li><a href=#第十步浏览器显示页面>第十步：浏览器显示页面</a></li>
-<li><a href=#第十一步浏览器发送获取嵌入在html中的其他内容>第十一步：浏览器发送获取嵌入在HTML中的其他内容</a></li>
-</ul>
-<ul>
-<li><a href=#研发视角>研发视角</a>
-<ul>
-<li><a href=#可观测行>可观测行</a></li>
-<li><a href=#构建发布>构建发布</a></li>
-</ul>
-</li>
+<li><a href=#一术语介绍>一、术语介绍</a></li>
+<li><a href=#二故障分类>二、故障分类</a></li>
+<li><a href=#三同城多活>三、同城多活</a></li>
+<li><a href=#四两地三中心>四、两地三中心</a></li>
+<li><a href=#五伪异地多活>五、伪异地多活</a></li>
+<li><a href=#六异地双活>六、异地双活</a></li>
+<li><a href=#七异地多活>七、异地多活</a></li>
+<li><a href=#八单元化>八、单元化</a></li>
+<li><a href=#九数据库架构>九、数据库架构</a></li>
 </ul>
 </nav></div>
 </div><div class=content id=content><blockquote>
@@ -123,45 +113,80 @@
 </blockquote>
 <h1 id=浏览器访问网页的全过程>浏览器访问网页的全过程</h1>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=%e6%b5%8f%e8%a7%88%e5%99%a8%e8%ae%bf%e9%97%ae%e7%bd%91%e9%a1%b5%e8%bf%87%e7%a8%8b.png data-srcset="%e6%b5%8f%e8%a7%88%e5%99%a8%e8%ae%bf%e9%97%ae%e7%bd%91%e9%a1%b5%e8%bf%87%e7%a8%8b.png, %e6%b5%8f%e8%a7%88%e5%99%a8%e8%ae%bf%e9%97%ae%e7%bd%91%e9%a1%b5%e8%bf%87%e7%a8%8b.png 1.5x, %e6%b5%8f%e8%a7%88%e5%99%a8%e8%ae%bf%e9%97%ae%e7%bd%91%e9%a1%b5%e8%bf%87%e7%a8%8b.png 2x" data-sizes=auto alt=浏览器访问网页过程.png title=浏览器访问网页全过程></p>
-<h2 id=第一步浏览器输入域名>第一步：浏览器输入域名</h2>
-<p>例如输入：www.baidu.com</p>
-<h2 id=第二步浏览器查找域名的ip地址>第二步：浏览器查找域名的IP地址</h2>
-<p>浏览器会把输入的域名解析成对应的IP，其过程如下：</p>
-<p>查找浏览器缓存：因为浏览器一般会缓存DNS记录一段时间，不同浏览器的时间可能不一样，一般2-30分钟不等，浏览器去查找这些缓存，如果有缓存，直接返回IP，否则下一步。</p>
-<p>查找系统缓存：浏览器缓存中找不到IP之后，浏览器会进行系统调用（windows中是gethostbyname），查找本机的hosts文件，如果找到，直接返回IP，否则下一步。</p>
-<p>查找路由器缓存：如果1,2步都查询无果，则需要借助网络，路由器一般都有自己的DNS缓存，将前面的请求发给路由器，查找ISP 服务商缓存 DNS的服务器，如果查找到IP则直接返回，没有的话继续查找。</p>
-<p>递归查询：如果以上步骤还找不到，则ISP的DNS服务器就会进行递归查询，所谓递归查询就是如果主机所询问的本地域名服务器不知道被查询域名的IP地址，那么本地域名服务器就以DNS客户的身份，向其他根域名服务器继续发出查询请求报文，而不是让该主机自己进行下一步查询。（本地域名服务器地址是通过DHPC协议获取地址，DHPC是负责分配IP地址的）</p>
-<p>迭代查询：本地域名服务器采用迭代查询，它先向一个根域名服务器查询。本地域名服务器向根域名服务器的查询一般都是采用迭代查询。所谓迭代查询就是当根域名服务器收到本地域名服务器发出的查询请求报文后，要么告诉本地域名服务器下一步应该查询哪一个域名服务器，然后本地域名服务器自己进行后续的查询。（而不是替代本地域名服务器进行后续查询）。</p>
-<p>本例子中：根域名服务器告诉本地域名服务器，下一次应查询的顶级域名服务器dns.com的IP地址。本地域名服务器向顶级域名服务器dns.com进行查询。顶级域名服务器dns.com告诉本地域名服务器，下一次应查询的权限域名服务器www.baidu.com的IP地址。本地域名服务器向权限域名服务器dns.baidu.com进行查询。权限域名服务器www.baidu.com告诉本地域名服务器，所查询的主机www.baidu.com的IP地址。本地域名服务器最后把结果告诉主机。</p>
-<h2 id=第三步-浏览器与目标服务器建立tcp连接>第三步 ：浏览器与目标服务器建立TCP连接</h2>
-<p>主机浏览器通过DNS解析得到了目标服务器的IP地址后，与服务器建立TCP连接。</p>
-<p>TCP3次握手连接：浏览器所在的客户机向服务器发出连接请求报文（SYN标志为1）；服务器接收报文后，同意建立连接，向客户机发出确认报文（SYN，ACK标志位均为1）；客户机接收到确认报文后，再次向服务器发出报文，确认已接收到确认报文；此处客户机与服务器之间的TCP连接建立完成，开始通信。</p>
-<h2 id=第四步浏览器通过http协议发送请求>第四步：浏览器通过http协议发送请求</h2>
-<p>浏览器向主机发起一个HTTP-GET方法报文请求。请求中包含访问的URL，也就是http://www.baidu.com/ ，KeepAlive，长连接，还有User-Agent用户浏览器操作系统信息，编码等。值得一提的是Accep-Encoding和Cookies项。Accept-Encoding一般采用gzip，压缩之后传输html文件。Cookies如果是首次访问，会提示服务器建立用户缓存信息，如果不是，可以利用Cookies对应键值，找到相应缓存，缓存里面存放着用户名，密码和一些用户设置项。</p>
-<h2 id=第五步某些服务会做永久重定向响应>第五步：某些服务会做永久重定向响应</h2>
-<p>对于大型网站存在多个主机站点，了负载均衡或者导入流量，提高SEO排名，往往不会直接返回请求页面，而是重定向。返回的状态码就不是200OK，而是301,302以3开头的重定向码，浏览器在获取了重定向响应后，在响应报文中Location项找到重定向地址，浏览器重新第一步访问即可。</p>
-<p>重定向的作用：重定向是为了负载均衡或者导入流量，提高SEO排名。利用一个前端服务器接受请求，然后负载到不同的主机上，可以大大提高站点的业务并发处理能力；重定向也可将多个域名的访问，集中到一个站点；由于baidu.com，www.baidu.com会被搜索引擎认为是两个网站，照成每个的链接数都会减少从而降低排名，永久重定向会将两个地址关联起来，搜索引擎会认为是同一个网站，从而提高排名。</p>
-<h2 id=第六步浏览器跟踪重定向地址>第六步：浏览器跟踪重定向地址</h2>
-<p>当浏览器知道了重定向后最终的访问地址之后，重新发送一个http请求，发送内容同上。</p>
-<h2 id=第七步服务器处理请求>第七步：服务器处理请求</h2>
-<p>服务器接收到获取请求，然后处理并返回一个响应。</p>
-<h2 id=第八步服务器发出一个html响应>第八步：服务器发出一个HTML响应</h2>
-<p>返回状态码200 OK，表示服务器可以响应请求，返回报文，由于在报头中Content-type为“text/html”，浏览器以HTML形式呈现，而不是下载文件。</p>
-<h2 id=第九步释放tcp连接>第九步：释放TCP连接</h2>
-<p>浏览器所在主机向服务器发出连接释放报文，然后停止发送数据；</p>
-<p>服务器接收到释放报文后发出确认报文，然后将服务器上未传送完的数据发送完；</p>
-<p>服务器数据传输完毕后，向客户机发送连接释放报文；</p>
-<p>客户机接收到报文后，发出确认，然后等待一段时间后，释放TCP连接；</p>
-<h2 id=第十步浏览器显示页面>第十步：浏览器显示页面</h2>
-<p>在浏览器没有完整接受全部HTML文档时，它就已经开始显示这个页面了，浏览器接收到返回的数据包，根据浏览器的渲染机制对相应的数据进行渲染。渲染后的数据，进行相应的页面呈现和脚步的交互。</p>
-<h2 id=第十一步浏览器发送获取嵌入在html中的其他内容>第十一步：浏览器发送获取嵌入在HTML中的其他内容</h2>
-<p>比如一些样式文件，图片url，js文件url等，浏览器会通过这些url重新发送请求，请求过程依然是HTML读取类似的过程，查询域名，发送请求，重定向等。不过这些静态文件是可以缓存到浏览器中的，有时访问这些文件不需要通过服务器，直接从缓存中取。某些网站也会使用第三方CDN进行托管这些静态文件。</p>
-<h1 id=后续>后续</h1>
-<h2 id=研发视角>研发视角</h2>
-<h3 id=可观测行>可观测行</h3>
-<h3 id=构建发布>构建发布</h3>
+<h2 id=一术语介绍>一、术语介绍</h2>
+<blockquote>
+<p>说明：</p>
+<ol>
+<li>在下文中，机房、数据中心、IDC是同义词(统一用机房)</li>
+<li>在下文中，数据库不仅仅指关系型数据库，还可能是其他类型的数据库</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冷备</td>
+<td>定时将主数据中心的数据库文件备份到其他数据中心。冷备不提供实时服务。当丢失数据时，可以通过冷备回复数据，以保证数据安全</td>
+</tr>
+<tr>
+<td>热备</td>
+<td>通过数据库主从负载或binlog订阅等技术对主数据中心进行实时备份。热备提供实时服务，当主数据中心不可用时，热备可以自动接管业务，保证业务不间断运行，用户端对主备切换无感知</td>
+</tr>
+<tr>
+<td>同城机房</td>
+<td>同城的数据中心之间物理距离比较近，并且使用专线连接，虽然跨数据中心的访问延迟比单个数据中心内部大，但可接受</td>
+</tr>
+<tr>
+<td>异地机房</td>
+<td>异地的数据中心之间物理距离较远，网速延迟是不可忽视的因素。比如北京到上海的距离是1300公里，即便架设专线，光纤以光速传输，一个唠会也要10ms。线路之间还有路由器、交换机等设备，实际延迟可达 30ms ~ 100ms，如果网络抖动，延迟可能达到 1s</td>
+</tr>
+</tbody>
+</table>
+<h2 id=二故障分类>二、故障分类</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>出现原因</th>
+<th>概率</th>
+<th>影响面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主机故障</td>
+<td>主机硬件故障、网络故障、负载过高等</td>
+<td>大</td>
+<td>小</td>
+</tr>
+<tr>
+<td>机房故障</td>
+<td>机房网络故障、店里故障、制冷系统故障、自然灾害等。比如塘沽爆炸事件</td>
+<td>小</td>
+<td>大</td>
+</tr>
+<tr>
+<td>地域故障</td>
+<td>战争、强自然灾害等。比如河南水灾</td>
+<td>极小</td>
+<td>极大</td>
+</tr>
+</tbody>
+</table>
+<h2 id=三同城多活>三、同城多活</h2>
+<h2 id=四两地三中心>四、两地三中心</h2>
+<h2 id=五伪异地多活>五、伪异地多活</h2>
+<h2 id=六异地双活>六、异地双活</h2>
+<h2 id=七异地多活>七、异地多活</h2>
+<h2 id=八单元化>八、单元化</h2>
+<h2 id=九数据库架构>九、数据库架构</h2>
 <h1 id=参考>参考</h1>
-<p><a href=https://blog.csdn.net/jiao_0509/article/details/82491299 target=_blank rel="noopener noreffer">https://blog.csdn.net/jiao_0509/article/details/82491299</a></p></div><div class=post-footer id=post-footer>
+<p><a href="https://www.bilibili.com/video/BV18v411c7FX/?spm_id_from=333.337.search-card.all.click&vd_source=984bb0162787242633addc56b07edfb8" target=_blank rel="noopener noreffer">https://www.bilibili.com/video/BV18v411c7FX/?spm_id_from=333.337.search-card.all.click&vd_source=984bb0162787242633addc56b07edfb8</a></br></p></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
