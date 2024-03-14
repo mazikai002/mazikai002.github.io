@@ -104,7 +104,7 @@ languageName = "English"
     pre = ""
     # you can add extra information after the name (HTML format is supported), such as icons
     post = ""
-    name = "Posts"
+    name = "Archives"
     url = "/posts/"
     # title will be shown when you hover on this menu link
     title = ""
