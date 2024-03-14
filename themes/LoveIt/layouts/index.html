@@ -8,7 +8,7 @@
         {{- if ne $profile.enable false -}}
             {{- partial "home/profile.html" . -}}
         {{- end -}}
-
+        <meta name="apple-mobile-web-app-title" content="Jay"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         {{- /* Content */ -}}
         {{- if .Content -}}
             <div class="single">
