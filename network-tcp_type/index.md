@@ -7,7 +7,11 @@
 <!--more-->
 
 
-![tcp_protocol.png](tcp_protocol.png)
+
+<div align=center>
+	<img src="tcp_protocol.png"/>
+</div>
+
 TCP的报文类型是由标志位(code bits)决定的，所以TCP报文类型一共6种。</br>
 在TCP层，有个FLAGS字段，这个字段有以下几个标识：SYN(synchronous建立联机)，ACK(acknowledgement 确认)，PSH(push传送)，FIN(finish结束)，RST(reset重置)，URG(urgent紧急)。它们的含义分别是 :
 -  SYN : 建立连接
