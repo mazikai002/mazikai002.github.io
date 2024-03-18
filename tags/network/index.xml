@@ -1,4 +1,4 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Network - 标签 - Mazikai's Blog</title><link>https://mazikai002.github.io/tags/network/</link><description>Network - 标签 - Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://mazikai002.github.io/tags/network/" rel="self" type="application/rss+xml"/><item><title>计算机网络 —— TCP报文类型</title><link>https://mazikai002.github.io/network-tcp_type/</link><pubDate>Sun, 28 Jan 2024 14:26:16 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/network-tcp_type/</guid><description><![CDATA[<blockquote>
-<p>很多人可能知道TCP的报文格式，但是当提及报文类型时却一问三不知。 </br>
+<p>很多人可能知道TCP报文格式，但当提及报文类型时却一问三不知。 </br>
 本文梳理了TCP报文类型，希望对您有帮助 ~ </br></p>
 </blockquote>]]></description></item></channel></rss>
