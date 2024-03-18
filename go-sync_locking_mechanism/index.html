@@ -8,7 +8,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mazikai002.github.io/go-sync_locking_mechanism/"><meta property="og:image" content="https://mazikai002.github.io/go-sync_locking_mechanism/featured-image.jpg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2023-01-02T11:27:48+08:00">
-<meta property="article:modified_time" content="2024-03-18T21:36:29+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-18T21:47:41+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/go-sync_locking_mechanism/featured-image.jpg">
 <meta name=twitter:title content="Golang 并发编程 —— 锁机制">
@@ -18,7 +18,7 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/go-sync_locking_mechanism/><link rel=prev href=https://mazikai002.github.io/go-diff_of_newmake/><link rel=next href=https://mazikai002.github.io/go-diff_of_stringbyte/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 并发编程 —— 锁机制","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go-sync_locking_mechanism\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go-sync_locking_mechanism\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":258,"url":"https:\/\/mazikai002.github.io\/go-sync_locking_mechanism\/","datePublished":"2023-01-02T11:27:48+08:00","dateModified":"2024-03-18T21:36:29+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"锁机制"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang 并发编程 —— 锁机制","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/go-sync_locking_mechanism\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/go-sync_locking_mechanism\/featured-image.jpg","width":1500,"height":429}],"genre":"posts","keywords":"golang","wordcount":1374,"url":"https:\/\/mazikai002.github.io\/go-sync_locking_mechanism\/","datePublished":"2023-01-02T11:27:48+08:00","dateModified":"2024-03-18T21:47:41+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"锁机制"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -83,8 +83,8 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Golang 并发编程 —— 锁机制</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2023-01-02>2023-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 258 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 1 分钟&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2023-01-02>2023-01-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1374 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 3 分钟&nbsp;
 <span id=busuanzi_container_value_page_pv><i class="far fa-eye fa-fw"></i>
 <span id=busuanzi_value_page_pv></span>&nbsp;次阅读</span>
 </div>
@@ -97,6 +97,11 @@
 <ul>
 <li><a href=#syncmutex互斥锁>sync.Mutex(互斥锁)</a></li>
 <li><a href=#syncrwmutex读写锁>sync.RWMutex(读写锁)</a></li>
+<li><a href=#syncmap并发安全的-map->sync.Map(并发安全的 Map )</a></li>
+<li><a href=#synconce>sync.Once</a></li>
+<li><a href=#synccond条件锁>sync.Cond(条件锁)</a></li>
+<li><a href=#syncwaitgroup一般用来控制协程执行顺序>sync.WaitGroup(一般用来控制协程执行顺序)</a></li>
+<li><a href=#syncpool>sync.Pool</a></li>
 <li><a href=#参考>参考</a></li>
 </ul>
 </nav></div>
@@ -109,6 +114,286 @@
 <p>这是一个标准的互斥锁，平时用的也比较多，用法也非常简单，lock用于加锁，unlock用于解锁，配合defer使用，完美。</p>
 <h2 id=syncrwmutex读写锁>sync.RWMutex(读写锁)</h2>
 <p>读写锁是互斥锁的升级版，它最大的优点就是支持多读，但是读和写、以及写与写之间还是互斥的，所以比较适合读多写少的场景。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>rw</span> <span class=o>*</span><span class=nx>RWMutex</span><span class=p>)</span> <span class=nf>Lock</span><span class=p>()</span>            <span class=c1>// 申请写锁
+</span><span class=c1></span><span class=kd>func</span> <span class=p>(</span><span class=nx>rw</span> <span class=o>*</span><span class=nx>RWMutex</span><span class=p>)</span> <span class=nf>Unlock</span><span class=p>()</span>	         <span class=c1>// 释放写锁
+</span><span class=c1></span><span class=kd>func</span> <span class=p>(</span><span class=nx>rw</span> <span class=o>*</span><span class=nx>RWMutex</span><span class=p>)</span> <span class=nf>RLock</span><span class=p>()</span>           <span class=c1>// 申请读锁
+</span><span class=c1></span><span class=kd>func</span> <span class=p>(</span><span class=nx>rw</span> <span class=o>*</span><span class=nx>RWMutex</span><span class=p>)</span> <span class=nf>RUnlock</span><span class=p>()</span>         <span class=c1>// 释放读锁
+</span><span class=c1></span><span class=kd>func</span> <span class=p>(</span><span class=nx>rw</span> <span class=o>*</span><span class=nx>RWMutex</span><span class=p>)</span> <span class=nf>RLocker</span><span class=p>()</span> <span class=nx>Locker</span>  <span class=c1>// 返回一个实现了Lock()和Unlock()方法的Locker接口
+</span></code></pre></td></tr></table>
+</div>
+</div><p>注 : 读性能上面比 Mutex 要好。</p>
+<h2 id=syncmap并发安全的-map->sync.Map(并发安全的 Map )</h2>
+<p>标准库里面实现的 sync.Map，是一个自带锁的map，使用起来方便省心。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kd>var</span> <span class=nx>m</span> <span class=nx>sync</span><span class=p>.</span><span class=nx>Map</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>m</span><span class=p>.</span><span class=nf>Store</span><span class=p>(</span><span class=s>&#34;1&#34;</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+    <span class=nx>m</span><span class=p>.</span><span class=nf>Store</span><span class=p>(</span><span class=s>&#34;2&#34;</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+    <span class=nx>m</span><span class=p>.</span><span class=nf>Store</span><span class=p>(</span><span class=s>&#34;3&#34;</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+    <span class=nx>m</span><span class=p>.</span><span class=nf>Store</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=s>&#34;5&#34;</span><span class=p>)</span> <span class=c1>// 注意类型
+</span><span class=c1></span>
+    <span class=nx>load</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>m</span><span class=p>.</span><span class=nf>Load</span><span class=p>(</span><span class=s>&#34;1&#34;</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>ok</span> <span class=p>{</span>
+        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%v\n&#34;</span><span class=p>,</span> <span class=nx>load</span><span class=p>)</span>
+    <span class=p>}</span>
+
+    <span class=nx>load</span><span class=p>,</span> <span class=nx>ok</span> <span class=p>=</span> <span class=nx>m</span><span class=p>.</span><span class=nf>Load</span><span class=p>(</span><span class=mi>4</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>ok</span> <span class=p>{</span>
+        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%v\n&#34;</span><span class=p>,</span> <span class=nx>load</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=synconce>sync.Once</h2>
+<p>sync.Once的功能就是保证只执行一次，也算是一种锁，通常可以用于只能执行一次的初始化操作，比如说单例模式里面的懒汉模式可以用到。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;sync&#34;</span>
+
+<span class=kd>var</span> <span class=nx>once</span> <span class=nx>sync</span><span class=p>.</span><span class=nx>Once</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nf>doOnce</span><span class=p>()</span>
+    <span class=nf>doOnce</span><span class=p>()</span>
+    <span class=nf>doOnce</span><span class=p>()</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>doOnce</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>once</span><span class=p>.</span><span class=nf>Do</span><span class=p>(</span><span class=kd>func</span><span class=p>()</span> <span class=p>{</span>
+        <span class=nb>println</span><span class=p>(</span><span class=s>&#34;one&#34;</span><span class=p>)</span>
+    <span class=p>})</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=synccond条件锁>sync.Cond(条件锁)</h2>
+<p>这个一般称之为条件锁，就是当满足某些条件下才起作用的锁，啥个意思呢？举个例子，当我们执行某个操作需要先获取锁，但是这个锁必须是由某个条件触发的，其中包含三种方式：</p>
+<ul>
+<li>等待通知: wait,阻塞当前线程，直到收到该条件变量发来的通知。</li>
+<li>单发通知: signal,让该条件变量向至少一个正在等待它的通知的线程发送通知，表示共享数据的状态已经改变。</li>
+<li>广播通知: broadcast,让条件变量给正在等待它的通知的所有线程都发送通知。</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+<span class=kn>import</span> <span class=p>(</span>
+    <span class=s>&#34;sync&#34;</span>
+    <span class=s>&#34;time&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>var</span> <span class=nx>cond</span> <span class=p>=</span> <span class=nx>sync</span><span class=p>.</span><span class=nf>NewCond</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>sync</span><span class=p>.</span><span class=nx>Mutex</span><span class=p>{})</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=mi>10</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+        <span class=k>go</span> <span class=kd>func</span><span class=p>(</span><span class=nx>i</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+            <span class=nx>cond</span><span class=p>.</span><span class=nx>L</span><span class=p>.</span><span class=nf>Lock</span><span class=p>()</span>
+            <span class=nx>cond</span><span class=p>.</span><span class=nf>Wait</span><span class=p>()</span> <span class=c1>// 等待通知,阻塞当前goroutine
+</span><span class=c1></span>            <span class=nb>println</span><span class=p>(</span><span class=nx>i</span><span class=p>)</span>
+            <span class=nx>cond</span><span class=p>.</span><span class=nx>L</span><span class=p>.</span><span class=nf>Unlock</span><span class=p>()</span>
+        <span class=p>}(</span><span class=nx>i</span><span class=p>)</span>
+    <span class=p>}</span>
+
+    <span class=c1>// 确保所有协程启动完毕
+</span><span class=c1></span>    <span class=nx>time</span><span class=p>.</span><span class=nf>Sleep</span><span class=p>(</span><span class=nx>time</span><span class=p>.</span><span class=nx>Second</span> <span class=o>*</span> <span class=mi>1</span><span class=p>)</span>
+
+    <span class=nx>cond</span><span class=p>.</span><span class=nf>Signal</span><span class=p>()</span>
+    <span class=nx>cond</span><span class=p>.</span><span class=nf>Signal</span><span class=p>()</span>
+    <span class=nx>cond</span><span class=p>.</span><span class=nf>Signal</span><span class=p>()</span>
+
+    <span class=c1>// 确保结果有时间输出
+</span><span class=c1></span>    <span class=nx>time</span><span class=p>.</span><span class=nf>Sleep</span><span class=p>(</span><span class=nx>time</span><span class=p>.</span><span class=nx>Second</span> <span class=o>*</span> <span class=mi>1</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=syncwaitgroup一般用来控制协程执行顺序>sync.WaitGroup(一般用来控制协程执行顺序)</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;sync&#34;</span>
+
+<span class=kd>var</span> <span class=nx>wg</span> <span class=nx>sync</span><span class=p>.</span><span class=nx>WaitGroup</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=mi>10</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+        <span class=nx>wg</span><span class=p>.</span><span class=nf>Add</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span> <span class=c1>// 计数+1
+</span><span class=c1></span>        <span class=k>go</span> <span class=kd>func</span><span class=p>()</span> <span class=p>{</span>
+            <span class=nb>println</span><span class=p>(</span><span class=s>&#34;1&#34;</span><span class=p>)</span>
+            <span class=nx>wg</span><span class=p>.</span><span class=nf>Done</span><span class=p>()</span> <span class=c1>// 计数-1，相当于wg.add(-1)
+</span><span class=c1></span>        <span class=p>}()</span>
+    <span class=p>}</span>
+    <span class=nx>wg</span><span class=p>.</span><span class=nf>Wait</span><span class=p>()</span> <span class=c1>// 阻塞带等待所有协程执行完毕
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=syncpool>sync.Pool</h2>
+<p>这是一个池子，但是却是一个不怎么可靠的池子，sync.Pool 初衷是用来保存和复用临时对象，以减少内存分配，降低CG压力。</br>
+说它不可靠是指放进 Pool 中的对象，会在说不准什么时候被GC回收掉，所以如果事先 Put 进去 100 个对象，下次 Get 的时候发现 Pool 是空也是有可能的。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+    <span class=s>&#34;fmt&#34;</span>
+    <span class=s>&#34;sync&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>User</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>name</span> <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>var</span> <span class=nx>pool</span> <span class=p>=</span> <span class=nx>sync</span><span class=p>.</span><span class=nx>Pool</span><span class=p>{</span>
+    <span class=nx>New</span><span class=p>:</span> <span class=kd>func</span><span class=p>()</span> <span class=kd>interface</span><span class=p>{}</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>User</span><span class=p>{</span>
+            <span class=nx>name</span><span class=p>:</span> <span class=s>&#34;default name&#34;</span><span class=p>,</span>
+        <span class=p>}</span>
+    <span class=p>},</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>pool</span><span class=p>.</span><span class=nf>Put</span><span class=p>(</span><span class=nx>User</span><span class=p>{</span><span class=nx>name</span><span class=p>:</span> <span class=s>&#34;name1&#34;</span><span class=p>})</span>
+    <span class=nx>pool</span><span class=p>.</span><span class=nf>Put</span><span class=p>(</span><span class=nx>User</span><span class=p>{</span><span class=nx>name</span><span class=p>:</span> <span class=s>&#34;name2&#34;</span><span class=p>})</span>
+
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%v\n&#34;</span><span class=p>,</span> <span class=nx>pool</span><span class=p>.</span><span class=nf>Get</span><span class=p>())</span> <span class=c1>// {name1}
+</span><span class=c1></span>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%v\n&#34;</span><span class=p>,</span> <span class=nx>pool</span><span class=p>.</span><span class=nf>Get</span><span class=p>())</span> <span class=c1>// {name2}
+</span><span class=c1></span>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%v\n&#34;</span><span class=p>,</span> <span class=nx>pool</span><span class=p>.</span><span class=nf>Get</span><span class=p>())</span> <span class=c1>// {default name} 池子已空，会返回New的结果
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>从上述输出结果可以看到，Pool就像是一个池子，我们放进去什么东西，但不一定可以取出来（如果中间有GC的话就会被清空），如果池子空了，就会使用之前定义的New方法返回的结果。</p>
+<p>注 : 为什么这个池子会放到sync包里面呢？那是因为它有一个重要的特性就是协程安全的，所以其底层自然也用到锁机制。</p>
 <h2 id=参考>参考</h2>
 <p><a href=https://wangbjun.site/2020/coding/golang/locker.html target=_blank rel="noopener noreffer">https://wangbjun.site/2020/coding/golang/locker.html</a></br></p></div><div class=post-footer id=post-footer>
 <div class=post-info>
