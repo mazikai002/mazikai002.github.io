@@ -1,8 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Golang - 标签 - Mazikai's Blog</title><link>https://mazikai002.github.io/tags/golang/</link><description>Golang - 标签 - Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://mazikai002.github.io/tags/golang/" rel="self" type="application/rss+xml"/><item><title>Golang 并发编程 —— 锁机制</title><link>https://mazikai002.github.io/go-sync_locking_mechanism/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_locking_mechanism/</guid><description><![CDATA[<blockquote>
-<p>在日常生活中，锁是为了保护一些东西，比如门锁、密码箱锁，可以理解对资源的保护。</br>
-在编程世界里，锁也是为了保护资源，比如文件锁 : 同一时间只也许一个用户修改文件。</br>
-本文就梳理了一下 Golang 中 sync 包中的锁机制。希望对您有帮助 ~</br></p>
-</blockquote>]]></description></item><item><title>Golang 性能提升 —— sync.Pool</title><link>https://mazikai002.github.io/go-sync_pool/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_pool/</guid><description><![CDATA[<blockquote>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Golang - 标签 - Mazikai's Blog</title><link>https://mazikai002.github.io/tags/golang/</link><description>Golang - 标签 - Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://mazikai002.github.io/tags/golang/" rel="self" type="application/rss+xml"/><item><title>Golang 性能提升 —— sync.Pool</title><link>https://mazikai002.github.io/go-sync_pool/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_pool/</guid><description><![CDATA[<blockquote>
 <p>一句话总结 : 保存和复用临时对象，减少内存分配，降低 GC 压力。</br></p>
 </blockquote>]]></description></item><item><title>Golang 底层原理 —— 逃逸分析</title><link>https://mazikai002.github.io/go-escape_analyze/</link><pubDate>Mon, 25 Dec 2023 19:51:23 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-escape_analyze/</guid><description><![CDATA[<blockquote>
 <p>逃逸分析 —— 让Golang程序员专注高效工作的挖井人！</br></p>
@@ -14,6 +10,10 @@
 <p>struct能不能比较？得分情况！</br></p>
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— []byte和string的不同</title><link>https://mazikai002.github.io/go-diff_of_stringbyte/</link><pubDate>Sat, 21 Jan 2023 22:42:19 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-diff_of_stringbyte/</guid><description><![CDATA[<blockquote>
 <p>[]byte和string的不同</br></p>
+</blockquote>]]></description></item><item><title>Golang 并发编程 —— 锁机制</title><link>https://mazikai002.github.io/go-sync_locking_mechanism/</link><pubDate>Mon, 02 Jan 2023 11:27:48 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_locking_mechanism/</guid><description><![CDATA[<blockquote>
+<p>在日常生活中，锁是为了保护一些东西，比如门锁、密码箱锁，可以理解对资源的保护。</br>
+在编程世界里，锁也是为了保护资源，比如文件锁 : 同一时间只也许一个用户修改文件。</br>
+本文就梳理了一下 Golang 中 sync 包中的锁机制。希望对您有帮助 ~</br></p>
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— var、new、make区别及使用</title><link>https://mazikai002.github.io/go-diff_of_newmake/</link><pubDate>Sat, 17 Dec 2022 13:28:51 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-diff_of_newmake/</guid><description><![CDATA[<blockquote>
 <p>make和new是内置函数，不是关键字，var是关键字。</br>
 make 只能用来分配及初始化类型为 slice、map、chan 的数据，而 new 可以分配任意类型的数据。</br>
