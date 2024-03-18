@@ -1,5 +1,9 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 - Mazikai's Blog</title><link>https://mazikai002.github.io/posts/</link><description>所有文章 | Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 06 Feb 2024 19:51:20 +0800</lastBuildDate><atom:link href="https://mazikai002.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>Golang 性能提升 —— sync.Pool</title><link>https://mazikai002.github.io/go-sync_pool/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_pool/</guid><description><![CDATA[<blockquote>
-<p>一句话总结：保存和复用临时对象，减少内存分配，降低 GC 压力。</br></p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 - Mazikai's Blog</title><link>https://mazikai002.github.io/posts/</link><description>所有文章 | Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 06 Feb 2024 19:51:20 +0800</lastBuildDate><atom:link href="https://mazikai002.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>Golang 并发编程 —— 锁机制</title><link>https://mazikai002.github.io/go-sync_locking_mechanism/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_locking_mechanism/</guid><description><![CDATA[<blockquote>
+<p>在日常生活中，锁是为了保护一些东西，比如门锁、密码箱锁，可以理解对资源的保护。</br>
+在编程世界里，锁也是为了保护资源，比如文件锁 : 同一时间只也许一个用户修改文件。</br>
+本文就梳理了一下 Golang 中 sync 包中的锁机制。希望对您有帮助 ~</br></p>
+</blockquote>]]></description></item><item><title>Golang 性能提升 —— sync.Pool</title><link>https://mazikai002.github.io/go-sync_pool/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_pool/</guid><description><![CDATA[<blockquote>
+<p>一句话总结 : 保存和复用临时对象，减少内存分配，降低 GC 压力。</br></p>
 </blockquote>]]></description></item><item><title>计算机网络 —— TCP报文类型</title><link>https://mazikai002.github.io/network-tcp_type/</link><pubDate>Sun, 28 Jan 2024 14:26:16 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/network-tcp_type/</guid><description><![CDATA[<blockquote>
 <p>很多人可能知道TCP报文格式，但当提及报文类型时却一问三不知。 </br>
 本文梳理了TCP报文类型，希望对您有帮助 ~ </br></p>
@@ -24,6 +28,4 @@
 <p>在浏览器地址栏输入URL，按下回车后究竟发生了什么？</br>
 本文还展示了研发人员是如何构建发布用户获取到的Web资源？</br>
 该部分为作者梳理的精简内容，希望对您有帮助 ~ </br></p>
-</blockquote>]]></description></item><item><title>MySQL 优化手段 —— 分库分表</title><link>https://mazikai002.github.io/mysql-separate_librarytable/</link><pubDate>Fri, 30 Jun 2023 11:25:22 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-separate_librarytable/</guid><description><![CDATA[<blockquote>
-<p>分库分表</br></p>
 </blockquote>]]></description></item></channel></rss>
