@@ -1,4 +1,7 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 - Mazikai's Blog</title><link>https://mazikai002.github.io/posts/</link><description>所有文章 | Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 02 Jan 2024 12:22:53 +0800</lastBuildDate><atom:link href="https://mazikai002.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>分布式系统 —— 容灾架构</title><link>https://mazikai002.github.io/distributed/</link><pubDate>Tue, 02 Jan 2024 12:22:53 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/distributed/</guid><description><![CDATA[<blockquote>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 - Mazikai's Blog</title><link>https://mazikai002.github.io/posts/</link><description>所有文章 | Mazikai's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Jan 2024 14:26:16 +0800</lastBuildDate><atom:link href="https://mazikai002.github.io/posts/" rel="self" type="application/rss+xml"/><item><title>计算机网络 —— TCP报文类型</title><link>https://mazikai002.github.io/network-tcp_type/</link><pubDate>Sun, 28 Jan 2024 14:26:16 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/network-tcp_type/</guid><description><![CDATA[<blockquote>
+<p>很多人可能知道TCP的报文格式，但是当提及报文类型时却一问三不知。 </br>
+本文梳理了TCP报文类型，希望对您有帮助 ~ </br></p>
+</blockquote>]]></description></item><item><title>分布式系统 —— 容灾架构</title><link>https://mazikai002.github.io/distributed/</link><pubDate>Tue, 02 Jan 2024 12:22:53 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/distributed/</guid><description><![CDATA[<blockquote>
 <p>后台服务可以分为两类 : 有状态和无状态。</br>
 容灾架构对无状态的服务(计算型服务)很简单，不外乎就是多加相同实例；但对有状态服务(存储型服务)就不是那么轻松。</br>
 下文为作者梳理的容灾架构相关内容，希望对您有帮助 ~ </br></p>
@@ -23,8 +26,4 @@
 <p>分库分表</br></p>
 </blockquote>]]></description></item><item><title>Golang 基本语法 —— 浅谈 Context</title><link>https://mazikai002.github.io/go-context/</link><pubDate>Mon, 22 May 2023 19:53:39 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-context/</guid><description><![CDATA[<blockquote>
 <p>context为Go中的一个标准库, 专门用来处理多个协程之间的控制问题, 比如协程的取消, 协程运行截止时间, 协程运行的超时时间, 协程之间的数据传输等.</br></p>
-</blockquote>]]></description></item><item><title>MySQL 重要日志 —— binlog、redo log、undo log</title><link>https://mazikai002.github.io/mysql-logs/</link><pubDate>Fri, 21 Apr 2023 14:47:36 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/mysql-logs/</guid><description><![CDATA[<blockquote>
-<p>MySQL日志主要包括错误日志、查询日志、慢查询日志、回滚日志、重做日志、归档日志几大类。</br>
-本文主要聊一聊MySQL的重要日志，binlog 、redo log 、undo log ！</br>
-该部分为作者梳理的精简内容，希望对您有帮助 ~ </br></p>
 </blockquote>]]></description></item></channel></rss>
