@@ -8,7 +8,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mazikai002.github.io/prometheus_tsdb/"><meta property="og:image" content="https://mazikai002.github.io/prometheus_tsdb/prometheus_logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2024-03-02T11:33:42+08:00">
-<meta property="article:modified_time" content="2024-03-19T17:59:04+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-19T20:58:09+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/prometheus_tsdb/prometheus_logo.png">
 <meta name=twitter:title content="Prometheus 原理分析 —— 深入TSDB存储">
@@ -18,7 +18,7 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/prometheus_tsdb/><link rel=prev href=https://mazikai002.github.io/go-sync_pool/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Prometheus 原理分析 —— 深入TSDB存储","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/prometheus_logo.png","width":336,"height":150}],"genre":"posts","keywords":"prometheus","wordcount":2459,"url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/","datePublished":"2024-03-02T11:33:42+08:00","dateModified":"2024-03-19T17:59:04+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"深入TSDB"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Prometheus 原理分析 —— 深入TSDB存储","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/prometheus_logo.png","width":336,"height":150}],"genre":"posts","keywords":"prometheus","wordcount":4389,"url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/","datePublished":"2024-03-02T11:33:42+08:00","dateModified":"2024-03-19T20:58:09+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"深入TSDB"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -83,8 +83,8 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Prometheus 原理分析 —— 深入TSDB存储</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-03-02>2024-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 2459 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 5 分钟&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-03-02>2024-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 4389 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 9 分钟&nbsp;
 <span id=busuanzi_container_value_page_pv><i class="far fa-eye fa-fw"></i>
 <span id=busuanzi_value_page_pv></span>&nbsp;次阅读</span>
 </div>
@@ -139,13 +139,13 @@
 </span><span class=lnt>7
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback> ^
-  │   . . . . . . . . . . . . . . . . .   . .   node_cpu{cpu=&#34;cpu0&#34;,mode=&#34;idle&#34;}
-  │     . . . . . . . . . . . . . . . . . . .   node_cpu{cpu=&#34;cpu0&#34;,mode=&#34;system&#34;}
-  │     . . . . . . . . . .   . . . . . . . .   node_load1{}
-  │     . . . . . . . . . . . . . . . .   . .  
-  v
-    &lt;------------------ 时间 ----------------&gt;
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>    ^
+    │   . . . . . . . . . . . . . . . . .   . .   node_cpu{cpu=&#34;cpu0&#34;,mode=&#34;idle&#34;}
+    │     . . . . . . . . . . . . . . . . . . .   node_cpu{cpu=&#34;cpu0&#34;,mode=&#34;system&#34;}
+    │     . . . . . . . . . .   . . . . . . . .   node_load1{}
+    │     . . . . . . . . . . . . . . . .   . .  
+    v
+      &lt;------------------ 时间 ----------------&gt;
 </code></pre></td></tr></table>
 </div>
 </div><p>上图中的每一个点称为一个样本，样本由两部分组成，源码内容如下(release-2.20版本) :</p>
@@ -184,7 +184,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>Metric 为metricName和label内容</li>
+<li>Metric 为metricName和label内容(labelset)</li>
 <li>Point 为当前样本时间和浮点数据值</li>
 </ul>
 <p>有人很可能会好奇Prometheus中存储的数据不应该为四部分数据么？(指标、标签、时间戳、样本值)，这是因为很多书籍方便给大家的一些基础认知，实际上Prometheus在底层数据存储的时候做了一些处理，把指标这一部分转化成了标签进行处理(具体原因作者还需要找一些认证材料，后续更新)，源码如下(release-2.20版本):</p>
@@ -340,38 +340,38 @@
 </span><span class=lnt>23
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>./data
-├── 01BKGV7JBM69T2G1BGBGM6KB12
-│   └── meta.json
-├── 01BKGTZQ1SYQJTR4PB43C8PD98
-│   ├── chunks
-│   │   └── 000001
-│   ├── tombstones
-│   ├── index
-│   └── meta.json
-├── 01BKGTZQ1HHWHV8FBJXW1Y3W0K
-│   └── meta.json
-├── 01BKGV7JC0RY8A6MACW02A2PJD
-│   ├── chunks
-│   │   └── 000001
-│   ├── tombstones
-│   ├── index
-│   └── meta.json
-├── chunks_head
-│   └── 000001
-└── wal
-    ├── 000000002
-    └── checkpoint.00000001
-        └── 00000000
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>  ./data
+  ├── 01BKGV7JBM69T2G1BGBGM6KB12
+  │   └── meta.json
+  ├── 01BKGTZQ1SYQJTR4PB43C8PD98
+  │   ├── chunks
+  │   │   └── 000001
+  │   ├── tombstones
+  │   ├── index
+  │   └── meta.json
+  ├── 01BKGTZQ1HHWHV8FBJXW1Y3W0K
+  │   └── meta.json
+  ├── 01BKGV7JC0RY8A6MACW02A2PJD
+  │   ├── chunks
+  │   │   └── 000001
+  │   ├── tombstones
+  │   ├── index
+  │   └── meta.json
+  ├── chunks_head
+  │   └── 000001
+  └── wal
+      ├── 000000002
+      └── checkpoint.00000001
+          └── 00000000
 </code></pre></td></tr></table>
 </div>
 </div><p>默认Prometheus的所有监控数据都会放在 ./data 目录下面，里面存放了 chunks_head、wal、block(01BKGV7JBM69T2G1BGBGM6KB12等) 三种类型的数据。</br></p>
 <ul>
 <li>
-<p>block : 每个 block 会存储 2 小时时间窗口内所有 series 指标数据，每个 block 文件名都会使用 github.com/oklog/ulid 这个库生成不重复的文件名，里面包含了 meta.json 文件、index 文件、tombstones 文件、chunks 文件夹，所有指标数据都存放在 chunks 文件夹中，chunks 中包含了多个数据段信息，每个数据段会按照 512MB 分成一个文件存储，被删除的数据会存放在 tombstone 文件夹中。</p>
+<p>block : 每个 block 会存储 2 小时时间窗口内所有 series 指标数据，每个 block 文件名都会使用 github.com/oklog/ulid 这个库生成不重复的文件名。</br>一个块包含4个部分(meta.json 文件、index 文件、tombstones 文件、chunks 文件夹)。</p>
 <ul>
 <li>
-<p>meta.json</p>
+<p>meta.json (块的元数据)</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -424,7 +424,7 @@
 </div>
 </div></li>
 <li>
-<p>chunks</p>
+<p>chunks (包含原始块，没有任何有关块的元数据)</p>
 <p>chunks目录包含一系列类似于 WAL/checkpoint/head 块的编号文件。每个文件的上限为 512MiB。这是该目录中单个文件的格式：</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -462,8 +462,124 @@
   └──────────────────────────────┘
 </code></pre></td></tr></table>
 </div>
-</div><p>它看起来与内存映射头块文件非常相似。该magic数字将该文件标识为块文件。version告诉我们如何解析这个文件。padding用于任何未来的标头。接下来是块列表。</p>
+</div><p>它看起来与内存映射头块文件非常相似。该magic数字将该文件标识为块文件。version告诉我们如何解析这个文件。padding用于任何未来的标头。接下来是块列表。</br>
+以下是单个块的格式：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>  ┌───────────────┬───────────────────┬──────────────┬────────────────┐
+  │ len &lt;uvarint&gt; │ encoding &lt;1 byte&gt; │ data &lt;bytes&gt; │ CRC32 &lt;4 byte&gt; │
+  └───────────────┴───────────────────┴──────────────┴────────────────┘
+</code></pre></td></tr></table>
+</div>
+</div><p>它看起来再次类似于磁盘上的内存映射头块，只是它缺少series ref,mint和maxt。我们需要 Head 块的这些附加信息来在启动期间重新创建内存中索引。但对于块来说，我们在 中拥有这些附加信息index，因为索引是它最终所属的地方，因此我们在这里不需要它。</br>
+引用的长度是 8 个字节。前 4 个字节告诉该块所在的文件号，最后 4 个字节告诉该块在文件中的起始偏移量（即 的第一个字节）len。如果该块位于文件中00093并且该len块的起始于文件中的字节偏移量1234，则该块的引用将为(92 &#171; 32) | 1234（左移位，然后按位或）。文件名使用基于 1 的索引，而块引用使用基于 0 的索引。因此在计算块引用时00093被转换为92</p>
 </li>
+<li>
+<p>index</p>
+<p>索引包含查询该块数据所需的所有内容。它不与任何其他块或外部实体共享任何数据，这使得可以在没有任何依赖性的情况下读取/查询块。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>  ┌────────────────────────────┬─────────────────────┐
+  │ magic(0xBAAAD700) &lt;4b&gt;     │ version(1) &lt;1 byte&gt; │
+  ├────────────────────────────┴─────────────────────┤
+  │ ┌──────────────────────────────────────────────┐ │
+  │ │                 Symbol Table                 │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                    Series                    │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                 Label Index 1                │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                      ...                     │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                 Label Index N                │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                   Postings 1                 │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                      ...                     │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                   Postings N                 │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │              Label Offset Table              │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │             Postings Offset Table            │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                      TOC                     │ │
+  │ └──────────────────────────────────────────────┘ │
+  └──────────────────────────────────────────────────┘
+</code></pre></td></tr></table>
+</div>
+</div><p>与其他文件一样，该magic数字标识该文件为索引文件。version告诉我们如何解析这个文件。</p>
+</li>
+<li>
+<p>tombstones</p>
+<p>墓碑是删除标记，即它们告诉我们在读取过程中要忽略哪个系列的什么时间范围。这是在写入存储删除请求的块之后创建和修改的块中唯一的文件。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>  ┌────────────────────────────┬─────────────────────┐
+  │ magic(0x0130BA30) &lt;4b&gt;     │ version(1) &lt;1 byte&gt; │
+  ├────────────────────────────┴─────────────────────┤
+  │ ┌──────────────────────────────────────────────┐ │
+  │ │                Tombstone 1                   │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                      ...                     │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                Tombstone N                   │ │
+  │ ├──────────────────────────────────────────────┤ │
+  │ │                  CRC&lt;4b&gt;                     │ │
+  │ └──────────────────────────────────────────────┘ │
+  └──────────────────────────────────────────────────┘
+</code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 </li>
 <li>
@@ -479,6 +595,7 @@
 </ul>
 <h2 id=参考>参考</h2>
 <p><a href=https://prometheus.io/ target=_blank rel="noopener noreffer">https://prometheus.io/</a></br>
+<a href=https://ganeshvernekar.com/blog target=_blank rel="noopener noreffer">https://ganeshvernekar.com/blog</a></br>
 <a href=https://juejin.cn/post/7001273893780471845 target=_blank rel="noopener noreffer">https://juejin.cn/post/7001273893780471845</a></br></p></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
