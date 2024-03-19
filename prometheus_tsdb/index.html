@@ -8,7 +8,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://mazikai002.github.io/prometheus_tsdb/"><meta property="og:image" content="https://mazikai002.github.io/prometheus_tsdb/prometheus_logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2024-03-02T11:33:42+08:00">
-<meta property="article:modified_time" content="2024-03-19T12:33:19+08:00"><meta property="og:site_name" content="LoveIt">
+<meta property="article:modified_time" content="2024-03-19T17:59:04+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://mazikai002.github.io/prometheus_tsdb/prometheus_logo.png">
 <meta name=twitter:title content="Prometheus 原理分析 —— 深入TSDB存储">
@@ -18,7 +18,7 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/prometheus_tsdb/><link rel=prev href=https://mazikai002.github.io/go-sync_pool/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Prometheus 原理分析 —— 深入TSDB存储","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/prometheus_logo.png","width":336,"height":150}],"genre":"posts","keywords":"prometheus","wordcount":1665,"url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/","datePublished":"2024-03-02T11:33:42+08:00","dateModified":"2024-03-19T12:33:19+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"深入TSDB"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Prometheus 原理分析 —— 深入TSDB存储","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/prometheus_logo.png","width":336,"height":150}],"genre":"posts","keywords":"prometheus","wordcount":2459,"url":"https:\/\/mazikai002.github.io\/prometheus_tsdb\/","datePublished":"2024-03-02T11:33:42+08:00","dateModified":"2024-03-19T17:59:04+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"深入TSDB"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -83,8 +83,8 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Prometheus 原理分析 —— 深入TSDB存储</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-03-02>2024-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1665 字&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 4 分钟&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-03-02>2024-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 2459 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 5 分钟&nbsp;
 <span id=busuanzi_container_value_page_pv><i class="far fa-eye fa-fw"></i>
 <span id=busuanzi_value_page_pv></span>&nbsp;次阅读</span>
 </div>
@@ -367,9 +367,111 @@
 </div>
 </div><p>默认Prometheus的所有监控数据都会放在 ./data 目录下面，里面存放了 chunks_head、wal、block(01BKGV7JBM69T2G1BGBGM6KB12等) 三种类型的数据。</br></p>
 <ul>
-<li>block : 每个 block 会存储 2 小时时间窗口内所有 series 指标数据，每个 block 文件名都会使用 github.com/oklog/ulid 这个库生成不重复的文件名，里面包含了 meta.json 文件、index 文件、tombstones 文件、chunks 文件夹，所有指标数据都存放在 chunks 文件夹中，chunks 中包含了多个数据段信息，每个数据段会按照 512MB 分成一个文件存储，被删除的数据会存放在 tombstone 文件夹中。</li>
-<li>chunks_head : 这个文件夹里面也包含了多个 chunks ，当内存的 <code>head block</code> 写不下了会将数据存放在这个文件夹下面，并保留对文件的引用。</li>
-<li>wal : 该文件夹里面存放的数据是当前正在写入的数据，里面包含多个数据段文件，一个文件默认最大 128M，Prometheus 会至少保留3个文件，对于高负载的机器会至少保留2小时的数据。wal 文件夹里面的数据是没有压缩过的，所以会比 block 里面的数据略大一些。</li>
+<li>
+<p>block : 每个 block 会存储 2 小时时间窗口内所有 series 指标数据，每个 block 文件名都会使用 github.com/oklog/ulid 这个库生成不重复的文件名，里面包含了 meta.json 文件、index 文件、tombstones 文件、chunks 文件夹，所有指标数据都存放在 chunks 文件夹中，chunks 中包含了多个数据段信息，每个数据段会按照 512MB 分成一个文件存储，被删除的数据会存放在 tombstone 文件夹中。</p>
+<ul>
+<li>
+<p>meta.json</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+  <span class=c1>// 虽然目录名称设置为 ULID，但只有 as 中存在的那个meta.json才是ulid有效 ID，目录名称可以是任何名称。
+</span><span class=c1></span>  <span class=nt>&#34;ulid&#34;</span><span class=p>:</span> <span class=s2>&#34;01BKGV7JBM69T2G1BGBGM6KB12&#34;</span><span class=p>,</span>
+  <span class=c1>// minTime和maxTime块中存在的所有块之间的绝对最小和最大时间戳。
+</span><span class=c1></span>  <span class=nt>&#34;minTime&#34;</span><span class=p>:</span> <span class=mi>1602237600000</span><span class=p>,</span> 
+  <span class=nt>&#34;maxTime&#34;</span><span class=p>:</span> <span class=mi>1602244800000</span><span class=p>,</span>
+  <span class=c1>// stats包含块中存在的时间序列、样本和块的数量的信息。
+</span><span class=c1></span>  <span class=nt>&#34;stats&#34;</span><span class=p>:</span> <span class=p>{</span>
+      <span class=nt>&#34;numSamples&#34;</span><span class=p>:</span> <span class=mi>553673232</span><span class=p>,</span>
+      <span class=nt>&#34;numSeries&#34;</span><span class=p>:</span> <span class=mi>1346066</span><span class=p>,</span>
+      <span class=nt>&#34;numChunks&#34;</span><span class=p>:</span> <span class=mi>4440437</span>
+  <span class=p>},</span>
+  <span class=c1>// compaction讲述该区块的压缩历史。level告诉我们这个区块已经经历了多少次压缩。sources告诉这个块是从哪些块创建的（即，哪些块被合并形成这个块）。如果它是从 Head 块创建的，则将其sources设置为其自身（01BKGV7JBM69T2G1BGBGM6KB12在本例中）。
+</span><span class=c1></span>  <span class=nt>&#34;compaction&#34;</span><span class=p>:</span> <span class=p>{</span>
+      <span class=nt>&#34;level&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+      <span class=nt>&#34;sources&#34;</span><span class=p>:</span> <span class=p>[</span>
+          <span class=s2>&#34;01EM65SHSX4VARXBBHBF0M0FDS&#34;</span><span class=p>,</span>
+          <span class=s2>&#34;01EM6GAJSYWSQQRDY782EA5ZPN&#34;</span>
+      <span class=p>]</span>
+  <span class=p>},</span>
+  <span class=nt>&#34;version&#34;</span><span class=p>:</span> <span class=mi>1</span>  <span class=c1>// 告诉我们如何解析元文件。
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>chunks</p>
+<p>chunks目录包含一系列类似于 WAL/checkpoint/head 块的编号文件。每个文件的上限为 512MiB。这是该目录中单个文件的格式：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>  ┌──────────────────────────────┐
+  │  magic(0x85BD40DD) &lt;4 byte&gt;  │
+  ├──────────────────────────────┤
+  │    version(1) &lt;1 byte&gt;       │
+  ├──────────────────────────────┤
+  │    padding(0) &lt;3 byte&gt;       │
+  ├──────────────────────────────┤
+  │ ┌──────────────────────────┐ │
+  │ │         Chunk 1          │ │
+  │ ├──────────────────────────┤ │
+  │ │          ...             │ │
+  │ ├──────────────────────────┤ │
+  │ │         Chunk N          │ │
+  │ └──────────────────────────┘ │
+  └──────────────────────────────┘
+</code></pre></td></tr></table>
+</div>
+</div><p>它看起来与内存映射头块文件非常相似。该magic数字将该文件标识为块文件。version告诉我们如何解析这个文件。padding用于任何未来的标头。接下来是块列表。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>chunks_head : 这个文件夹里面也包含了多个 chunks ，当内存的 <code>head block</code> 写不下了会将数据存放在这个文件夹下面，并保留对文件的引用。</p>
+</li>
+<li>
+<p>wal : 该文件夹里面存放的数据是当前正在写入的数据，里面包含多个数据段文件，一个文件默认最大 128M，Prometheus 会至少保留3个文件，对于高负载的机器会至少保留2小时的数据。wal 文件夹里面的数据是没有压缩过的，所以会比 block 里面的数据略大一些。</p>
+</li>
 </ul>
 <h3 id=内存部分>内存部分</h3>
 <ul>

@@ -145,6 +145,53 @@ function (p *PromParser) Metric(l *labels.Labels) string {
 ```
 默认Prometheus的所有监控数据都会放在 ./data 目录下面，里面存放了 chunks_head、wal、block(01BKGV7JBM69T2G1BGBGM6KB12等) 三种类型的数据。</br>
 - block : 每个 block 会存储 2 小时时间窗口内所有 series 指标数据，每个 block 文件名都会使用 github.com/oklog/ulid 这个库生成不重复的文件名，里面包含了 meta.json 文件、index 文件、tombstones 文件、chunks 文件夹，所有指标数据都存放在 chunks 文件夹中，chunks 中包含了多个数据段信息，每个数据段会按照 512MB 分成一个文件存储，被删除的数据会存放在 tombstone 文件夹中。
+  - meta.json
+    ```json
+    {
+      // 虽然目录名称设置为 ULID，但只有 as 中存在的那个meta.json才是ulid有效 ID，目录名称可以是任何名称。
+      "ulid": "01BKGV7JBM69T2G1BGBGM6KB12",
+      // minTime和maxTime块中存在的所有块之间的绝对最小和最大时间戳。
+      "minTime": 1602237600000, 
+      "maxTime": 1602244800000,
+      // stats包含块中存在的时间序列、样本和块的数量的信息。
+      "stats": {
+          "numSamples": 553673232,
+          "numSeries": 1346066,
+          "numChunks": 4440437
+      },
+      // compaction讲述该区块的压缩历史。level告诉我们这个区块已经经历了多少次压缩。sources告诉这个块是从哪些块创建的（即，哪些块被合并形成这个块）。如果它是从 Head 块创建的，则将其sources设置为其自身（01BKGV7JBM69T2G1BGBGM6KB12在本例中）。
+      "compaction": {
+          "level": 1,
+          "sources": [
+              "01EM65SHSX4VARXBBHBF0M0FDS",
+              "01EM6GAJSYWSQQRDY782EA5ZPN"
+          ]
+      },
+      "version": 1  // 告诉我们如何解析元文件。
+    }
+    ```  
+  - chunks
+
+    chunks目录包含一系列类似于 WAL/checkpoint/head 块的编号文件。每个文件的上限为 512MiB。这是该目录中单个文件的格式：
+    ```
+      ┌──────────────────────────────┐
+      │  magic(0x85BD40DD) <4 byte>  │
+      ├──────────────────────────────┤
+      │    version(1) <1 byte>       │
+      ├──────────────────────────────┤
+      │    padding(0) <3 byte>       │
+      ├──────────────────────────────┤
+      │ ┌──────────────────────────┐ │
+      │ │         Chunk 1          │ │
+      │ ├──────────────────────────┤ │
+      │ │          ...             │ │
+      │ ├──────────────────────────┤ │
+      │ │         Chunk N          │ │
+      │ └──────────────────────────┘ │
+      └──────────────────────────────┘
+    ```
+    它看起来与内存映射头块文件非常相似。该magic数字将该文件标识为块文件。version告诉我们如何解析这个文件。padding用于任何未来的标头。接下来是块列表。
+    
 - chunks_head : 这个文件夹里面也包含了多个 chunks ，当内存的 `head block` 写不下了会将数据存放在这个文件夹下面，并保留对文件的引用。
 - wal : 该文件夹里面存放的数据是当前正在写入的数据，里面包含多个数据段文件，一个文件默认最大 128M，Prometheus 会至少保留3个文件，对于高负载的机器会至少保留2小时的数据。wal 文件夹里面的数据是没有压缩过的，所以会比 block 里面的数据略大一些。
 
