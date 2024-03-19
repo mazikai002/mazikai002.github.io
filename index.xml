@@ -1,4 +1,6 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Mazikai's Blog</title><link>https://mazikai002.github.io/</link><description>Hugo theme - LoveIt</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 06 Feb 2024 19:51:20 +0800</lastBuildDate><atom:link href="https://mazikai002.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Golang 性能提升 —— sync.Pool</title><link>https://mazikai002.github.io/go-sync_pool/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_pool/</guid><description><![CDATA[<blockquote>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Mazikai's Blog</title><link>https://mazikai002.github.io/</link><description>Hugo theme - LoveIt</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mazikai002@gmail.com (mazikai002)</managingEditor><webMaster>mazikai002@gmail.com (mazikai002)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 02 Mar 2024 11:33:42 +0800</lastBuildDate><atom:link href="https://mazikai002.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Prometheus 原理分析 —— 深入TSDB存储</title><link>https://mazikai002.github.io/prometheus_tsdb/</link><pubDate>Sat, 02 Mar 2024 11:33:42 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/prometheus_tsdb/</guid><description><![CDATA[<blockquote>
+<p>聊聊 Prometheus 的时序数据库 TSDB ~</br></p>
+</blockquote>]]></description></item><item><title>Golang 性能提升 —— sync.Pool</title><link>https://mazikai002.github.io/go-sync_pool/</link><pubDate>Tue, 06 Feb 2024 19:51:20 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/go-sync_pool/</guid><description><![CDATA[<blockquote>
 <p>一句话总结 : 保存和复用临时对象，减少内存分配，降低 GC 压力。</br></p>
 </blockquote>]]></description></item><item><title>计算机网络 —— TCP报文类型</title><link>https://mazikai002.github.io/network-tcp_type/</link><pubDate>Sun, 28 Jan 2024 14:26:16 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/network-tcp_type/</guid><description><![CDATA[<blockquote>
 <p>很多人可能知道TCP报文格式，但当提及报文类型时却一问三不知。 </br>
@@ -48,7 +50,4 @@
 make 只能用来分配及初始化类型为 slice、map、chan 的数据，而 new 可以分配任意类型的数据。</br>
 new 分配返回的是指针，即类型 *Type。make 返回引用，即 Type。</br>
 new 分配的空间被清零。make 分配空间后，会进行初始化。</br></p>
-</blockquote>]]></description></item><item><title>Blog 搭建之路</title><link>https://mazikai002.github.io/blog-setup/</link><pubDate>Sun, 06 Nov 2022 21:40:32 +0800</pubDate><author>mazikai</author><guid>https://mazikai002.github.io/blog-setup/</guid><description><![CDATA[<blockquote>
-<p>博客的意义在于自己梳理知识，总结经验，顺便和他人进行技术交流。</br>
-这是我的第一篇博客，记录我是如何搭建这个网站的！希望对您也有帮助~</p>
 </blockquote>]]></description></item></channel></rss>
