@@ -1,0 +1,249 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<title>Prometheus 日常运维 —— 清理旧数据 - Mazikai's Blog</title><meta name=Description content="清理旧数据"><meta property="og:title" content="Prometheus 日常运维 —— 清理旧数据">
+<meta property="og:description" content="清理旧数据">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mazikai002.github.io/prometheus_clean_up_old_data/"><meta property="og:image" content="https://mazikai002.github.io/prometheus_clean_up_old_data/prometheus_logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-05-06T14:21:28+08:00">
+<meta property="article:modified_time" content="2024-03-20T11:54:22+08:00"><meta property="og:site_name" content="LoveIt">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://mazikai002.github.io/prometheus_clean_up_old_data/prometheus_logo.png">
+<meta name=twitter:title content="Prometheus 日常运维 —— 清理旧数据">
+<meta name=twitter:description content="清理旧数据">
+<meta name=application-name content="LoveIt">
+<meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/prometheus_clean_up_old_data/><link rel=prev href=https://mazikai002.github.io/mysql-logs/><link rel=next href=https://mazikai002.github.io/go-context/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Prometheus 日常运维 —— 清理旧数据","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/prometheus_clean_up_old_data\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/prometheus_clean_up_old_data\/prometheus_logo.png","width":336,"height":150}],"genre":"posts","keywords":"prometheus","wordcount":1294,"url":"https:\/\/mazikai002.github.io\/prometheus_clean_up_old_data\/","datePublished":"2023-05-06T14:21:28+08:00","dateModified":"2024-03-20T11:54:22+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"清理旧数据"}</script></head>
+<body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Mazikai's Blog">Mazikai's Blog</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Archives </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/about/> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw" aria-hidden=true></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw" aria-hidden=true></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Mazikai's Blog">Mazikai's Blog</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw" aria-hidden=true></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw" aria-hidden=true></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/posts/ title>Archives</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</header><div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div><main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Prometheus 日常运维 —— 清理旧数据</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2023-05-06>2023-05-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 1294 字&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 3 分钟&nbsp;
+<span id=busuanzi_container_value_page_pv><i class="far fa-eye fa-fw"></i>
+<span id=busuanzi_value_page_pv></span>&nbsp;次阅读</span>
+</div>
+</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/prometheus_clean_up_old_data/prometheus_logo.png data-srcset="/prometheus_clean_up_old_data/prometheus_logo.png, /prometheus_clean_up_old_data/prometheus_logo.png 1.5x, /prometheus_clean_up_old_data/prometheus_logo.png 2x" data-sizes=auto alt=/prometheus_clean_up_old_data/prometheus_logo.png title=清理旧数据></div><div class="details toc" id=toc-static data-kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#清理意义>清理意义</a></li>
+<li><a href=#两种方式>两种方式</a>
+<ul>
+<li><a href=#配置方式>配置方式</a></li>
+<li><a href=#手动方式>手动方式</a>
+<ul>
+<li><a href=#prometheus-tsdb-admin-api>Prometheus TSDB Admin API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#参考>参考</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><blockquote>
+<p>Prometheus怎么清理旧数据 ~</br></p>
+</blockquote>
+<h2 id=清理意义>清理意义</h2>
+<p>Prometheus是一个开源的监控系统，它可以帮助用户收集和存储大量的时间序列数据。当监控系统收集的数据变得过于庞大时，就需要清理旧数据以释放存储空间。</p>
+<h2 id=两种方式>两种方式</h2>
+<h3 id=配置方式>配置方式</h3>
+<p>Prometheus可以通过设置retention参数来自动清理旧数据。这个参数指定了数据保留的时间范围，超过这个时间范围的数据将被删除。可以通过修改Prometheus的配置文件来设置retention参数。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>--storage.tsdb.path：Prometheus写入数据库的位置。默认为data/。
+--storage.tsdb.retention.time：何时删除旧数据。默认为15d。storage.tsdb.retention如果此标志设置为默认值以外的任何值，则覆盖。
+--storage.tsdb.retention.size：[EXPERIMENTAL]要保留的最大存储块字节数。最旧的数据将首先被删除。默认为0或禁用。该标志是试验性的，将来的发行版中可能会更改。支持的单位：B，KB，MB，GB，TB，PB，EB。例如：“ 512MB”
+--storage.tsdb.retention：不推荐使用storage.tsdb.retention.time。
+--storage.tsdb.wal-compression：启用压缩预写日志（WAL）。根据您的数据，您可以预期WAL大小将减少一半，而额外的CPU负载却很少。该标志在2.11.0中引入，默认情况下在2.20.0中启用。请注意，一旦启用，将Prometheus降级到2.11.0以下的版本将需要删除WAL。
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=手动方式>手动方式</h3>
+<p>如果需要手动清理旧数据，可以使用Prometheus的TSDB Admin API来删除时间序列数据。可以通过查询接口获取要删除的时间序列数据，然后调用API删除这些数据。</p>
+<h4 id=prometheus-tsdb-admin-api>Prometheus TSDB Admin API</h4>
+<p>当前Prometheus TSDB Admin API提供了三个接口，分别是快照(Snapshot), 数据删除(Delete Series), 数据清理(Clean Tombstones)。 下面介绍数据删除和数据清理。</p>
+<p>Prometheus的TSDB Admin API默认是关闭的，需要加入启动参数&ndash;web.enable-admin-api才会启动。</p>
+<p>开启TSDB Admin API后，可以使用下面的API删除metrics数据:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=err>PUT</span> <span class=err>/api/v</span><span class=mi>1</span><span class=err>/admin/tsdb/delete_series</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个接口有以下三个URL Query参数:</p>
+<ul>
+<li>match[]=&lt;series_selector> : Metrics的名称</li>
+<li>start=&lt;rfc3339 | unix_timestamp> : 开始的时间戳</li>
+<li>end=&lt;rfc3339 | unix_timestamp> : 结束的时间戳</li>
+</ul>
+<p>例如:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=err>#</span> <span class=err>删除匹配数据</span>
+<span class=err>curl</span> <span class=err>-X</span> <span class=err>POST</span> <span class=err>-g</span> <span class=err>&#39;http:</span><span class=c1>//xxx.com/api/v1/admin/tsdb/delete_series?match[]={wanip=&#34;10.244.2.158:9090&#34;}&#39; 
+</span><span class=c1></span>
+<span class=err>#</span> <span class=err>删除所有数据</span>
+<span class=err>curl</span> <span class=err>-X</span> <span class=err>POST</span> <span class=err>-g</span> <span class=err>&#39;http:</span><span class=c1>//xxx.com/api/v1/admin/tsdb/delete_series?match[]={__name__=~&#34;.+&#34;}&#39; 
+</span><span class=c1></span>
+<span class=err>#</span> <span class=err>删除指定的Metric</span>
+<span class=err>curl</span> <span class=err>-X</span> <span class=err>POST</span> <span class=err>-g</span> <span class=err>&#39;http:</span><span class=c1>//127.0.0.1:9090/api/v1/admin/tsdb/delete_series?match[]=node_cpu_seconds_total&#39;
+</span><span class=c1></span>
+<span class=err>#</span> <span class=err>删除指定</span> <span class=err>Metric</span> <span class=err>名称和特定</span> <span class=err>label</span> <span class=err>名称的全部数据</span>
+<span class=err>curl</span> <span class=err>-X</span> <span class=err>POST</span> <span class=err>-g</span> <span class=err>&#39;http:</span><span class=c1>//127.0.0.1:9090/api/v1/admin/tsdb/delete_series?match[]=node_cpu_seconds_total{mode=&#34;idle&#34;}&#39;
+</span><span class=c1></span>
+<span class=err>#删除指定时间范围内的</span> <span class=err>Metric</span> <span class=err>数据</span>
+<span class=err>curl</span> <span class=err>-X</span> <span class=err>POST</span> <span class=err>-g</span> <span class=err>&#39;http:</span><span class=c1>//127.0.0.1:9090/api/v1/admin/tsdb/delete_series?start=1578301194&amp;end=1578301694&amp;match[]=node_cpu_seconds_total{mode=&#34;idle&#34;}&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>需要注意使用数据删除接口将metric数据删除后，只是将数据标记为删除，实际的数据(tombstones)仍然存在于磁盘上，Prometheus发生Block压缩时或者调用clean_tombstones接口时才会真正删除数据。</p>
+<p>clean_tombstones手动数据清理接口十分简单，不需要参数:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=err>curl</span> <span class=err>-X</span> <span class=err>POST</span> <span class=err>http:</span><span class=c1>//127.0.0.1:9090/api/v1/admin/tsdb/clean_tombstones
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=参考>参考</h2>
+<p><a href=https://prometheus.io/docs/prometheus/latest/querying/api/#tsdb-admin-apis target=_blank rel="noopener noreffer">https://prometheus.io/docs/prometheus/latest/querying/api/#tsdb-admin-apis</a></br>
+<a href=https://www.yisu.com/ask/83355172.html target=_blank rel="noopener noreffer">https://www.yisu.com/ask/83355172.html</a></br>
+<a href=https://blog.frognew.com/2021/08/how-to-delete-prometheus-metrics.html target=_blank rel="noopener noreffer">https://blog.frognew.com/2021/08/how-to-delete-prometheus-metrics.html</a></br>
+<a href=https://blog.csdn.net/w345731923/article/details/113643866 target=_blank rel="noopener noreffer">https://blog.csdn.net/w345731923/article/details/113643866</a></br></p></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span></span>
+</div></div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/prometheus/>Prometheus</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/mysql-logs/ class=prev rel=prev title="MySQL 重要日志 —— binlog、redo log、undo log"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>MySQL 重要日志 —— binlog、redo log、undo log</a>
+<a href=/go-context/ class=next rel=next title="Golang 基本语法 —— 浅谈 Context">Golang 基本语法 —— 浅谈 Context<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+</div>
+</article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2024</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>mazikai002</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<meta name=referrer content="no-referrer-when-downgrade">
+<section>
+<span id=busuanzi_container_value_site_pv><i class="far fa-eye fa-fw"></i>
+<span id=busuanzi_value_site_pv></span>
+</span>
+&nbsp;|&nbsp;
+<span id=busuanzi_container_value_site_uv><i class="fa fa-user"></i>
+<span id=busuanzi_value_site_uv></span>
+</span>
+</section>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw" aria-hidden=true></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:50},lightgallery:!0,search:{algoliaAppID:"PASDMWALPK",algoliaIndex:"index.zh-cn",algoliaSearchKey:"b42948e51daaa93df92381c8e2ac0f93",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
