@@ -39,6 +39,7 @@ func main(){
 	fmt.Println("res:",res)
 }
 
+// 采用滑动窗口的方法来进行求解
 func minWindow(s string, t string) string {
     res := ""
     length := math.MaxInt32
