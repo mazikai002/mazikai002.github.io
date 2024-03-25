@@ -20,8 +20,8 @@ lightgallery: true
 
 ```go
 func main() {
-	a := []int{4, 1, 2, 4, 7}
-	res := IsContainNumTotalK(a, 20)
+	res := []int{4, 1, 2, 3, 7}
+	res := quickSort(res)
 	fmt.Println(res)
 }
 
