@@ -1,6 +1,6 @@
 ---
 weight: 1
-title: "Kafka 相关知识"
+title: "Kafka 系列"
 date: 2024-07-29T23:19:42+08:00
 draft: false
 author: "mazikai"
@@ -16,7 +16,7 @@ tags: ["kafka"]
 lightgallery: true
 ---
 
-> 为什么选择Kafka? ~</br>
+> 为什么选择Kafka? </br>
 
 <!--more-->
 
