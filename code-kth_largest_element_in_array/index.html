@@ -3,22 +3,22 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
-<title>算法刷题 —— 判断 nums 中是否存在某个子序列之和等于 k - Mazikai's Blog</title><meta name=Description content="判断 nums 中是否存在某个子序列之和等于 k"><meta property="og:title" content="算法刷题 —— 判断 nums 中是否存在某个子序列之和等于 k">
-<meta property="og:description" content="判断 nums 中是否存在某个子序列之和等于 k">
+<title>算法刷题 —— 快速排序 - Mazikai's Blog</title><meta name=Description content="快速排序"><meta property="og:title" content="算法刷题 —— 快速排序">
+<meta property="og:description" content="快速排序">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mazikai002.github.io/code-sum_judged_be_k/"><meta property="og:image" content="https://mazikai002.github.io/code-sum_judged_be_k/code_logo.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2024-02-06T19:50:00+08:00">
+<meta property="og:url" content="https://mazikai002.github.io/code-kth_largest_element_in_array/"><meta property="og:image" content="https://mazikai002.github.io/code-kth_largest_element_in_array/code_logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2024-03-25T14:50:00+08:00">
 <meta property="article:modified_time" content="2024-07-30T00:12:43+08:00"><meta property="og:site_name" content="LoveIt">
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://mazikai002.github.io/code-sum_judged_be_k/code_logo.png">
-<meta name=twitter:title content="算法刷题 —— 判断 nums 中是否存在某个子序列之和等于 k">
-<meta name=twitter:description content="判断 nums 中是否存在某个子序列之和等于 k">
+<meta name=twitter:image content="https://mazikai002.github.io/code-kth_largest_element_in_array/code_logo.png">
+<meta name=twitter:title content="算法刷题 —— 快速排序">
+<meta name=twitter:description content="快速排序">
 <meta name=application-name content="LoveIt">
 <meta name=apple-mobile-web-app-title content="LoveIt"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/code-sum_judged_be_k/><link rel=prev href=https://mazikai002.github.io/network-tcp_type/><link rel=next href=https://mazikai002.github.io/go-sync_pool/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://mazikai002.github.io/code-kth_largest_element_in_array/><link rel=prev href=https://mazikai002.github.io/code-quicksort/><link rel=next href=https://mazikai002.github.io/kafka_foundation/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
 <noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法刷题 —— 判断 nums 中是否存在某个子序列之和等于 k","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/code-sum_judged_be_k\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/code-sum_judged_be_k\/code_logo.png","width":492,"height":182}],"genre":"posts","keywords":"code","wordcount":97,"url":"https:\/\/mazikai002.github.io\/code-sum_judged_be_k\/","datePublished":"2024-02-06T19:50:00+08:00","dateModified":"2024-07-30T00:12:43+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"判断 nums 中是否存在某个子序列之和等于 k"}</script></head>
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法刷题 —— 快速排序","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/mazikai002.github.io\/code-kth_largest_element_in_array\/"},"image":[{"@type":"ImageObject","url":"https:\/\/mazikai002.github.io\/code-kth_largest_element_in_array\/code_logo.png","width":492,"height":182}],"genre":"posts","keywords":"code","wordcount":132,"url":"https:\/\/mazikai002.github.io\/code-kth_largest_element_in_array\/","datePublished":"2024-03-25T14:50:00+08:00","dateModified":"2024-07-30T00:12:43+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/mazikai002.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"mazikai"},"description":"快速排序"}</script></head>
 <body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -81,21 +81,21 @@
 <div class=container><div class=toc id=toc-auto>
 <h2 class=toc-title>目录</h2>
 <div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法刷题 —— 判断 nums 中是否存在某个子序列之和等于 k</h1><div class=post-meta>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法刷题 —— 快速排序</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://mazikai002.cn title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>mazikai</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-02-06>2024-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 97 字&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-03-25>2024-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;约 132 字&nbsp;
 <i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;预计阅读 1 分钟&nbsp;
 <span id=busuanzi_container_value_page_pv><i class="far fa-eye fa-fw"></i>
 <span id=busuanzi_value_page_pv></span>&nbsp;次阅读</span>
 </div>
-</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/code-sum_judged_be_k/code_logo.png data-srcset="/code-sum_judged_be_k/code_logo.png, /code-sum_judged_be_k/code_logo.png 1.5x, /code-sum_judged_be_k/code_logo.png 2x" data-sizes=auto alt=/code-sum_judged_be_k/code_logo.png title="判断 nums 中是否存在某个子序列之和等于 k"></div><div class="details toc" id=toc-static data-kept>
+</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=/code-kth_largest_element_in_array/code_logo.png data-srcset="/code-kth_largest_element_in_array/code_logo.png, /code-kth_largest_element_in_array/code_logo.png 1.5x, /code-kth_largest_element_in_array/code_logo.png 2x" data-sizes=auto alt=/code-kth_largest_element_in_array/code_logo.png title=快速排序></div><div class="details toc" id=toc-static data-kept>
 <div class="details-summary toc-title">
 <span>目录</span>
 <span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents></nav></div>
 </div><div class=content id=content><blockquote>
-<p>判断 nums 中是否存在某个子序列之和等于 k ~ </br></p>
+<p>快速排序 ~ </br></p>
 </blockquote>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -118,26 +118,46 @@
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-	<span class=nx>a</span> <span class=o>:=</span> <span class=p>[]</span><span class=kt>int</span><span class=p>{</span><span class=mi>4</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>7</span><span class=p>}</span>
-	<span class=nx>res</span> <span class=o>:=</span> <span class=nf>IsContainNumTotalK</span><span class=p>(</span><span class=nx>a</span><span class=p>,</span> <span class=mi>20</span><span class=p>)</span>
+	<span class=nx>res</span> <span class=o>:=</span> <span class=p>[]</span><span class=kt>int</span><span class=p>{</span><span class=mi>4</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>7</span><span class=p>}</span>
+	<span class=nx>res</span> <span class=o>:=</span> <span class=nf>quickSort</span><span class=p>(</span><span class=nx>res</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>res</span><span class=p>)</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>IsContainNumTotalK</span><span class=p>(</span><span class=nx>nums</span> <span class=p>[]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>k</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
-	<span class=k>if</span> <span class=nx>k</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>{</span>
-		<span class=k>return</span> <span class=kc>true</span>
-	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>{</span>
-		<span class=k>return</span> <span class=kc>false</span>
+<span class=kd>func</span> <span class=nf>quickSort</span><span class=p>(</span><span class=nx>nums</span> <span class=p>[]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>left</span><span class=p>,</span> <span class=nx>right</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>left</span> <span class=o>&gt;=</span> <span class=nx>right</span> <span class=p>{</span> <span class=c1>// 下标重叠不用排序
+</span><span class=c1></span>		<span class=k>return</span>
 	<span class=p>}</span>
+	<span class=nx>pivot</span> <span class=o>:=</span> <span class=nf>partition</span><span class=p>(</span><span class=nx>nums</span><span class=p>,</span><span class=nx>left</span><span class=p>,</span><span class=nx>right</span><span class=p>)</span>
+	<span class=nf>quickSort</span><span class=p>(</span><span class=nx>nums</span><span class=p>,</span><span class=nx>left</span><span class=p>,</span><span class=nx>pivot</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+	<span class=nf>quickSort</span><span class=p>(</span><span class=nx>nums</span><span class=p>,</span><span class=nx>pivot</span><span class=o>+</span><span class=mi>1</span><span class=p>,</span><span class=nx>right</span><span class=p>)</span>
+<span class=p>}</span>
 
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>);</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=k>return</span> <span class=nf>IsContainNumTotalK</span><span class=p>(</span><span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>:</span><span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)],</span> <span class=nx>k</span><span class=o>-</span><span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=p>])</span> <span class=o>||</span> <span class=nf>IsContainNumTotalK</span><span class=p>(</span><span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>:</span><span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)],</span> <span class=nx>k</span><span class=p>)</span>
+<span class=kd>func</span> <span class=nf>partition</span><span class=p>(</span><span class=nx>nums</span> <span class=p>[]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>left</span><span class=p>,</span> <span class=nx>right</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+	<span class=nx>i</span><span class=p>,</span> <span class=nx>j</span> <span class=o>:=</span> <span class=nx>left</span><span class=p>,</span> <span class=nx>right</span>
+	<span class=k>for</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>j</span> <span class=p>{</span>
+		<span class=k>for</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>j</span> <span class=o>&amp;&amp;</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span> <span class=o>&gt;=</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>left</span><span class=p>]</span> <span class=p>{</span>
+			<span class=nx>j</span><span class=o>--</span>
+		<span class=p>}</span>
+		<span class=k>for</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>j</span> <span class=o>&amp;&amp;</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>&lt;=</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>left</span><span class=p>]</span> <span class=p>{</span>
+			<span class=nx>i</span><span class=o>++</span>
+		<span class=p>}</span>
+		<span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=p>],</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span> <span class=p>=</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>j</span><span class=p>],</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span>
 	<span class=p>}</span>
-
-	<span class=k>return</span> <span class=kc>false</span>
+	<span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=p>],</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>left</span><span class=p>]</span> <span class=p>=</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>left</span><span class=p>],</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span>
+	<span class=k>return</span> <span class=nx>i</span>
 <span class=p>}</span>
 </code></pre></td></tr></table>
 </div>
@@ -160,8 +180,8 @@
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/network-tcp_type/ class=prev rel=prev title="计算机网络 —— TCP报文类型"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>计算机网络 —— TCP报文类型</a>
-<a href=/go-sync_pool/ class=next rel=next title="Golang 性能提升 —— sync.Pool">Golang 性能提升 —— sync.Pool<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+<div class=post-nav><a href=/code-quicksort/ class=prev rel=prev title="算法刷题 —— 数组中的第K个最大元素"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>算法刷题 —— 数组中的第K个最大元素</a>
+<a href=/kafka_foundation/ class=next rel=next title="Kafka 相关知识">Kafka 相关知识<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
 </div>
 </article></div>
 </main><footer class=footer>
