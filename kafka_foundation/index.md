@@ -1,7 +1,7 @@
-# Kafka 相关知识
+# Kafka 系列
 
 
-> 为什么选择Kafka? ~</br>
+> 为什么选择Kafka? </br>
 
 <!--more-->
 
