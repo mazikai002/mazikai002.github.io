@@ -1,11 +1,11 @@
 ---
 weight: 1
-title: "算法刷题 —— 快速排序"
-date: 2024-03-25T14:50:00+08:00
+title: "算法刷题 —— 数组中的第K个最大元素"
+date: 2024-03-22T14:50:00+08:00
 draft: false
 author: "mazikai"
 authorLink: "https://mazikai002.cn"
-description: "快速排序"
+description: "堆排序"
 images: []
 resources:
 - name: "featured-image"
@@ -16,7 +16,7 @@ tags: ["code"]
 lightgallery: true
 ---
 
-> 快速排序 ~ </br>
+> 数组中的第K个最大元素 —— 堆排序 ~ </br>
 
 ```go
 func main() {
@@ -25,27 +25,37 @@ func main() {
 	fmt.Println(res)
 }
 
-func quickSort(nums []int, left, right int) {
-	if left >= right { // 下标重叠不用排序
-		return
-	}
-	pivot := partition(nums,left,right)
-	quickSort(nums,left,pivot-1)
-	quickSort(nums,pivot+1,right)
+// 最小堆
+type Heap struct {
+	arr []int // 堆存储数据的区域
+	size int  // 堆的大小
 }
 
-func partition(nums []int, left, right int) int {
-	i, j := left, right
-	for i < j {
-		for i < j && nums[j] >= nums[left] {
-			j--
+func(hp *Heap) Add(num int) {
+	if len(hp.arr) < hp.size { // 堆内元素没满
+	
+
+
+	} else { // 堆内元素满了
+		if num > hp.arr[0] {
+			hp.arr[0] = num
+			hp.down(0)
 		}
-		for i < j && nums[i] <= nums[left] {
-			i++
-		}
-		nums[i], nums[j] = nums[j], nums[i]
 	}
-	nums[i], nums[left] = nums[left], nums[i]
-	return i
+}
+
+func(hp *Heap) down(i int) {
+	leftChild , rightChild := 2*i+1 , 2*i+2 // 左右孩子下标
+	cur := i // cur指向i、leftChild、leftChild三者中的最小值下标
+	if leftChild < len(hp.arr) && hp.arr[cur] > hp.arr[leftChild] {
+		cur = leftChild
+	}
+	if rightChild < len(hp.arr) && hp.arr[cur] > hp.arr[rightChild] {
+		cur = rightChild
+	}
+	if cur != i {
+		hp.arr[i] , hp.arr[cur] = hp.arr[cur] , hp.arr[i]
+		Down(cur)
+	}
 }
 ```
